@@ -1,5 +1,4 @@
 import React from "react";
-import { NammaLogo } from "@/components/NammaLogo";
 import { NammaMyLogo } from "@/components/NammaMyLogo";
 type Props = {};
 

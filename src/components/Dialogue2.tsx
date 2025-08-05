@@ -229,6 +229,7 @@ export default function Dialogue2({
     } catch (error) {
       // Fallback: close immediately if animation fails
       onClose();
+      console.error("Error closing dialogue:", error);
     }
   };
 

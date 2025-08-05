@@ -32,7 +32,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Card: React.FC<CardProps> = ({
   imageUrl,
   title,
-  description,
+  // description,
   width = "w-52",
   imageHeight = "h-32",
   height = "h-auto",
