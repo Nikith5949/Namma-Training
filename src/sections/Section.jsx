@@ -3,6 +3,7 @@ import "@/styles/Section.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
+import { videonamma } from "@/components/all_assets";
 
 // import { Canvas } from "@react-three/fiber";
 // import ThreeModel from "@/components/ThreeModel";
@@ -87,7 +88,7 @@ export default function Section() {
               muted
               playsInline
               className="background-video max-w-full w-[30vw]  mr-auto top-[30vh] left-[22vw] z-10"
-              src="/assets/Namma_vid.mp4"
+              src={videonamma}
               style={{
                 position: "relative",
                 zIndex: 10,

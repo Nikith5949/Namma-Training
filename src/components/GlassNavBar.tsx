@@ -4,6 +4,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
+import { navBarLogo } from "@/components/all_assets";
 
 /**
  * GlassNavBar - A navigation bar with a frosted glass effect and white elements.
@@ -83,7 +84,7 @@ export default function GlassNavBar({
         {/* <NammaOgLogo className="w-12 h-12" /> */}
         {/* <NammaMyLogo id="nama1" className="h-13 w-60 cursor-pointer py-1" /> */}
         <Image
-          src="/assets/newnammanav.png"
+          src={navBarLogo}
           alt="Go Namma Logo"
           height={40}
           width={120}

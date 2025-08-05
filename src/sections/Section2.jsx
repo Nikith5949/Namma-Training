@@ -1,5 +1,6 @@
 import React from "react";
 import "@/styles/Section2.css";
+import { videonamma2 } from "@/components/all_assets";
 
 export default function Section2() {
   return (
@@ -14,7 +15,7 @@ export default function Section2() {
               muted
               playsInline
               className="w-full h-full object-cover"
-              src="/assets/Namma_vid.mp4"
+              src={videonamma2}
             />
           </div>
           <div className="content-text flex items-center justify-center p-4">
