@@ -83,7 +83,9 @@ export default function GlassNavBar({
         {/* <NammaOgLogo className="w-12 h-12" /> */}
         {/* <NammaMyLogo id="nama1" className="h-13 w-60 cursor-pointer py-1" /> */}
         <Image
-          src="./assets/newnammanav.png"
+          src={`${
+            process.env.NEXT_PUBLIC_BASE_PATH || ""
+          }/assets/newnammanav.png`}
           alt="Go Namma Logo"
           height={40}
           width={120}
