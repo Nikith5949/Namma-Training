@@ -1,4 +1,3 @@
-import NavWithDialogue from "@/components/NavWithDialogue";
 import AllSections from "@/components/AllSections";
 
 export default function Home() {
