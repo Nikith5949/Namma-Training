@@ -1,0 +1,87 @@
+.section-layout {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+  box-sizing: border-box;
+}
+.athlete {
+  background-color: rgba(10, 218, 218, 0.99);
+  border: 7px solid rgba(10, 218, 218, 0.99);
+  /* clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%); */
+}
+.section-content p {
+  font-size: 16px; /*Slightly larger base size rgba(19, 18, 18, 0.509), rgba(9, 9, 9, 0.504) */
+  color: #e2e8f0;
+  line-height: 2; /* More breathing room */
+  margin-bottom: 0; /* Remove bottom margin */
+  font-weight: 300; /* Lighter weight for contrast */
+}
+.section-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%; /* Takes full available width */
+  max-width: 80%;
+}
+.section-content h2 {
+  font-size: 2.3rem; /* Increased from 2.5rem */
+  font-weight: 700; /* Bolder weight */
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.025em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.2; /* Tighter line height for headings */
+}
+
+.section-content {
+  max-width: 800px; /* Adjust this value to control paragraph width */
+  text-align: left;
+  color: white;
+  padding: 1rem 0; /* Added vertical padding */
+  margin: 0; /* Remove default margins */
+  line-height: 1.7;
+  font-size: 1.125rem;
+}
+.section-athlete {
+  font-size: 100px;
+  line-height: 0.8;
+  opacity: 1;
+  width: 30%;
+  transform: rotate(-3deg);
+
+  text-align: right;
+  font-style: bold;
+}
+.section-title {
+  font-size: 100px;
+  line-height: 0.9;
+  opacity: 1;
+  text-align: right;
+  font-style: bold;
+}
+
+/* 3D Model Container */
+.model-3d {
+  width: 600px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.model-3d canvas {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 12px;
+}
+
+/* Remove unused styles */
+.section-column,
+.section-left,
+.section-right {
+  display: none;
+}

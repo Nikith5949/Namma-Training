@@ -1,0 +1,130 @@
+/* GSAP-powered Dialogue Bar Styles */
+.dialogue2-bar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 0.3rem 0;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /* Initial state for GSAP animations */
+  opacity: 0;
+}
+
+.dialogue2-text {
+  color: rgba(30, 41, 59, 0.7);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.025em;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4);
+  line-height: 1.4;
+  /* Initial state for GSAP animations */
+  opacity: 0;
+  transform: translateY(15px) scale(1.05);
+}
+
+.dialogue2-carousel-text {
+  display: inline-block;
+  max-width: calc(100% - 80px);
+  text-align: center;
+  padding: 0 1rem;
+  /* Remove CSS transitions - GSAP will handle all animations */
+  transition: none;
+  will-change: transform, opacity;
+}
+
+.dialogue2-close {
+  /* Initial state for GSAP animations */
+  will-change: transform;
+  transition: none;
+}
+
+/* Enhanced glass effect on hover (will be enhanced by GSAP) */
+.dialogue2-bar:hover {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dialogue2-text {
+    font-size: 13px;
+    padding: 0 0.8rem;
+  }
+
+  .dialogue2-carousel-text {
+    max-width: calc(100% - 60px);
+    padding: 0 0.5rem;
+  }
+
+  .dialogue2-bar {
+    padding: 0.25rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialogue2-text {
+    font-size: 12px;
+    padding: 0 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .dialogue2-carousel-text {
+    max-width: calc(100% - 50px);
+    padding: 0 0.3rem;
+  }
+
+  .dialogue2-close {
+    right: 0.75rem;
+    font-size: 18px;
+  }
+}
+
+/* Dark mode support */
+/* @media (prefers-color-scheme: dark) {
+  .dialogue2-bar {
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dialogue2-text {
+    color: rgba(226, 232, 240, 0.8);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .dialogue2-close {
+    color: rgba(148, 163, 184, 0.8);
+  }
+
+  .dialogue2-close:hover {
+    color: rgba(226, 232, 240, 1);
+  }
+
+  .dialogue2-bar:hover {
+    background: rgba(15, 23, 42, 0.98);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+} */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dialogue2-bar {
+    background: rgba(255, 255, 255, 1);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .dialogue2-text {
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 500;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .dialogue2-bar,
+  .dialogue2-text,
+  .dialogue2-close {
+    /* GSAP will respect this in the component logic */
+    transition: none;
+  }
+}

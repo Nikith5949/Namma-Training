@@ -1,0 +1,57 @@
+.dialogue-bar {
+  background: rgba(255, 255, 255, 0.946);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 0.2rem 0;
+  font-size: 1rem;
+  transition: top 0.3s;
+}
+
+.dialogue-text {
+  color: rgba(30, 41, 59, 0.55); /* glass-like, subtle dark text */
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.25);
+}
+
+/* Carousel Animation Classes */
+.dialogue-carousel-text {
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+  display: inline-block;
+  max-width: calc(100% - 80px); /* Account for close button */
+  text-align: center;
+}
+
+.dialogue-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dialogue-fade-out {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+/* Hover effect to pause carousel */
+.dialogue-bar:hover .dialogue-carousel-text {
+  transform: scale(1.02);
+}
+
+/* Responsive text sizing */
+@media (max-width: 768px) {
+  .dialogue-text {
+    font-size: 13px;
+    padding: 0 1rem;
+  }
+
+  .dialogue-carousel-text {
+    max-width: calc(100% - 60px);
+  }
+}
+
+@media (max-width: 480px) {
+  .dialogue-text {
+    font-size: 12px;
+    padding: 0 0.5rem;
+  }
+}

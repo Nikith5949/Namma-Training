@@ -1,0 +1,10 @@
+/* Full-screen Section with 2-column grid */
+.section-container2 {
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ... rest of your existing CSS ... */
