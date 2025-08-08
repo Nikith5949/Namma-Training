@@ -1,12 +1,9 @@
 import React from "react";
+// Removed per-page transition; handled globally in `app/layout.tsx`
 
 function Contact() {
   return (
-    <>
-      <div className="bg-amber-200 h-screen w-screen pt-22 text-8xl">
-        Contact
-      </div>
-    </>
+    <div className="bg-green-400 h-screen w-screen text-8xl pt-22">Contact</div>
   );
 }
 
