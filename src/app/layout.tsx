@@ -23,7 +23,7 @@ export default function RootLayout({
 
   return (
     <ViewTransitions>
-      <html lang="en" className={SuissenIntl.variable}>
+      <html lang="en" className={`${SuissenIntl.variable}`}>
         <body className="overflow-x-hidden">
           <NavWithDialogue />
 

@@ -6,7 +6,7 @@ import gsap from "gsap";
 
 export default function Section4() {
   return (
-    <section className="section-container4 relative z-30 text-[rgba(10,218,218,0.99)] bg-[rgba(251,248,237,1)]">
+    <section className="section-container4 relative z-30 text-[var(--theme-color)] bg-[var(--theme-bgcolor)]">
       <div className="section-background4 w-full h-screen flex flex-col items-center gap-8">
         <div className="w-full flex flex-col items-center mt-40">
           <div

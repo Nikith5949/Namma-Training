@@ -34,10 +34,10 @@ export default function Section3() {
 
   return (
     <>
-      <div className="h-0.5 w-full z-35 relative bg-[rgba(10,218,218,0.99)]" />
+      <div className="h-0.5 w-full z-35 relative bg-[var(--theme-color)]" />
       <section
         ref={sectionRef}
-        className="section-container3 relative z-30 bg-[rgba(251,248,237,1)] w-full overflow-hidden"
+        className="section-container3 relative z-30 bg-[var(--theme-bgcolor)] w-full overflow-hidden"
       >
         <div className="all-containers">
           {/* Background Section */}
@@ -47,7 +47,7 @@ export default function Section3() {
           >
             <div className="w-full max-w-6xl flex flex-col items-center justify-center">
               <div
-                className="font-light text-[rgba(10,218,218,0.99)] text-4xl sm:text-5xl lg:text-6xl text-center px-4"
+                className="font-light text-[var(--theme-color)] text-4xl sm:text-5xl lg:text-6xl text-center px-4"
                 style={{ fontFamily: "var(--font-perpetua-light)" }}
               >
                 ENERGIZE YOUR EXPERIENCE
@@ -72,7 +72,7 @@ export default function Section3() {
 
           {/* Bottom Spacer and Divider */}
           <div className="h-[40vh]"></div>
-          <div className="h-0.5 w-[90vw] max-w-6xl mx-auto bg-[rgba(10,218,218,0.99)]"></div>
+          <div className="h-0.5 w-[90vw] max-w-6xl mx-auto bg-[var(--theme-color)]"></div>
         </div>
       </section>
     </>

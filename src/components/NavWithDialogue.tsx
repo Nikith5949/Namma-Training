@@ -2,7 +2,7 @@
 import React from "react";
 import Dialogue2 from "@/components/Dialogue2";
 import GlassNavBar from "@/components/GlassNavBar";
-import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function NavWithDialogue() {
   const [isDialogueOpen, setIsDialogueOpen] = React.useState(true);
@@ -40,14 +40,17 @@ export default function NavWithDialogue() {
     };
   }, [isDialogueOpen]);
 
-  // Cleanup GSAP tweens on unmount
-  React.useEffect(() => {
-    return () => {
-      if (navWrapperRef.current) {
-        gsap.killTweensOf(navWrapperRef.current);
-      }
-    };
-  }, []);
+  // GSAP animations using useGSAP hook
+  useGSAP(
+    () => {
+      // Any GSAP animations can be added here if needed
+      // The useGSAP hook automatically handles cleanup on unmount
+    },
+    { 
+      dependencies: [showDialogue, showNav, isDialogueOpen],
+      scope: navWrapperRef 
+    }
+  );
 
   const navTopClass = isDialogueOpen && showDialogue ? "top-7" : "top-0";
 

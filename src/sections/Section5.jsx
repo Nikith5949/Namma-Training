@@ -47,9 +47,9 @@ export default function Section5() {
   }, []);
 
   return (
-    <div className="text-[rgba(10,218,218,0.99)] bg-[rgba(251,248,237,1)] w-full relative z-30 pb-20">
+    <div className="text-[var(--theme-color)] bg-[var(--theme-bgcolor)] w-full relative z-30 pb-20">
       {/* Top divider */}
-      <div className="border-t h-0.4 mr-[5vw] ml-[5vw] bg-[rgba(10,218,218,0.99)] mb-10"></div>
+      <div className="border-t h-0.4 mr-[5vw] ml-[5vw] bg-[var(--theme-color)] mb-10"></div>
 
       <h1 className="main-contactus flex justify-center text-4xl font-bold uppercase mb-8">
         Contact us
@@ -79,13 +79,13 @@ export default function Section5() {
 
       <div className="rotate-6">
         {/* Dividers */}
-        <div className="border-t h-0.4 mr-[7vw] ml-[7vw] bg-[rgba(10,218,218,0.99)] mt-10"></div>
+        <div className="border-t h-0.4 mr-[7vw] ml-[7vw] bg-[var(--theme-color)] mt-10"></div>
 
         {/* Infinite scrolling text with multiple languages */}
         <div className="overflow-hidden py-5 w-screen">
           <div
             ref={scrollRef}
-            className="whitespace-nowrap text-6xl font-bold uppercase text-[rgba(10,218,218,0.99)]"
+            className="whitespace-nowrap text-6xl font-bold uppercase text-[var(--theme-color)]"
             dangerouslySetInnerHTML={{
               __html: welcomeLanguages
                 .map((item) => `${item.text}&nbsp;&nbsp;&nbsp;`)
@@ -95,7 +95,7 @@ export default function Section5() {
           />
         </div>
 
-        <div className="border-t h-0.4 mr-[7vw] ml-[7vw] bg-[rgba(10,218,218,0.99)] mt-5 mb-12"></div>
+        <div className="border-t h-0.4 mr-[7vw] ml-[7vw] bg-[var(--theme-color)] mt-5 mb-12"></div>
       </div>
       {/* Footer */}
       <div className="ml-[25vw] text-left py-6 text-sm">

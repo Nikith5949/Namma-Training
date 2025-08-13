@@ -144,11 +144,11 @@ const Card: React.FC<CardProps> = ({
   return (
     <div
       ref={cardRef}
-      className={`${width} ${height} bg-[rgba(251,248,237,1)] flex flex-col min-h-[200px] overflow-hidden`}
+      className={`${width} ${height} bg-[var(--theme-bgcolor)] flex flex-col min-h-[200px] overflow-hidden`}
       style={positionStyles}
     >
       <div
-        className={`${imageHeight} relative w-full overflow-hidden bg-[rgba(251,248,237,1)]`}
+        className={`${imageHeight} relative w-full overflow-hidden bg-[var(--theme-bgcolor)]`}
       >
         <Image
           src={imageUrl}
@@ -162,14 +162,14 @@ const Card: React.FC<CardProps> = ({
         />
       </div>
       <div className="p-4  flex flex-col">
-        <h3 className="text-[rgba(10,218,218,0.99)] font-bold mb-2 line-clamp-2">
+        <h3 className="text-[var(--theme-color)] font-bold mb-2 line-clamp-2">
           {title && title.toUpperCase()}
         </h3>
         {/* <p className="text-[rgba(10,218,218,0.99)] line-clamp-3">
           {description && description.toUpperCase()}
         </p> */}
       </div>
-      <div className="linediv h-0.5 w-full bg-[rgba(10,218,218,0.99)]"></div>
+      <div className="linediv h-0.5 w-full bg-[var(--theme-color)]"></div>
     </div>
   );
 };
