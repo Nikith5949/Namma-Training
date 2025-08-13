@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "@/styles/GlassNavBar.css";
 import Image from "next/image";
 import { gsap } from "gsap";
@@ -25,13 +25,16 @@ export default function GlassNavBar({
 }: GlassNavBarProps) {
   const navRef = useRef<HTMLElement>(null);
   const router = useTransitionRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   // Use glass effect only when not scrolled (at the very top)
   const useGlassEffect = !isScrolled;
+
   function slideInOut() {
     document.documentElement.animate(
       [
         { opacity: 1, transform: "translateY(0)" },
-        { opacity: 0.2, transform: "translateY(-35%)" },
+        { opacity: 0.8, transform: "translateY(-35%)" },
       ],
       {
         duration: 1500,
@@ -54,6 +57,77 @@ export default function GlassNavBar({
       }
     );
   }
+
+  const toggleMobileMenu = () => {
+    const newState = !isMobileMenuOpen;
+    setIsMobileMenuOpen(newState);
+
+    // Prevent body scroll when mobile menu is open
+    if (newState) {
+      document.body.classList.add("mobile-menu-open");
+    } else {
+      document.body.classList.remove("mobile-menu-open");
+    }
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    document.body.classList.remove("mobile-menu-open");
+  };
+
+  // Close mobile menu when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on escape key
+  React.useEffect(() => {
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("keydown", handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu when screen size changes to desktop
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        document.body.classList.remove("mobile-menu-open");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobileMenuOpen]);
+
   // GSAP animations using useGSAP hook
   useGSAP(
     () => {
@@ -95,85 +169,162 @@ export default function GlassNavBar({
   );
 
   return (
-    <nav
-      ref={navRef}
-      className={`fixed ${topClass} left-0 w-full z-50 ${
-        useGlassEffect
-          ? "backdrop-blur-sm bg-white/5 border-b border-white/10"
-          : "bg-black border-b border-white/10"
-      } shadow-lg flex items-center justify-between px-8 py-1`}
-      style={{
-        WebkitBackdropFilter: useGlassEffect ? "blur(12px)" : "none",
-        willChange: "transform, opacity",
-      }}
-    >
-      <div className="flex items-center space-x-4">
-        {/* Logo - using namma.svg */}
-        {/* <NammaOgLogo className="w-12 h-12" /> */}
-        {/* <NammaMyLogo id="nama1" className="h-13 w-60 cursor-pointer py-1" /> */}
-        <Image
-          src={navBarLogo}
-          alt="Go Namma Logo"
-          height={40}
-          width={120}
-          priority
-          className="w-auto h-14"
-        />
+    <>
+      <nav
+        ref={navRef}
+        className={`fixed ${topClass} left-0 w-full z-50 ${
+          useGlassEffect
+            ? "backdrop-blur-sm bg-white/5 border-b border-white/10"
+            : "bg-black border-b border-white/10"
+        } shadow-lg flex items-center justify-between px-4 sm:px-8 py-1`}
+        style={{
+          WebkitBackdropFilter: useGlassEffect ? "blur(12px)" : "none",
+          willChange: "transform, opacity",
+        }}
+      >
+        <div className="flex items-center space-x-4">
+          {/* Logo - using namma.svg */}
+          <Image
+            src={navBarLogo}
+            alt="Go Namma Logo"
+            height={40}
+            width={120}
+            priority
+            className="w-auto h-10 sm:h-14"
+          />
+        </div>
+
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex space-x-8">
+          <li className="text-white font-medium hover:underline cursor-pointer">
+            <Link href="/">Home</Link>
+          </li>
+          <li className="text-white font-medium hover:underline cursor-pointer">
+            <a
+              href="/about"
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/about", { onTransitionReady: slideInOut });
+              }}
+            >
+              About
+            </a>
+          </li>
+          <li className="text-white font-medium hover:underline cursor-pointer">
+            <a
+              href="/contact"
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/contact", { onTransitionReady: slideInOut });
+              }}
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        {/* Mobile Menu Button */}
+        {/* <button
+          onClick={toggleMobileMenu}
+          className="mobile-menu-button md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 group relative"
+          aria-label="Toggle mobile menu"
+        >
+          {/* deadlift Dumbbell-style hamburger lines 
+          <div className={`line w-8 h-0.5 transition-all duration-300 ease-in-out transform ${
+            isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+          }`}></div>
+          <div className={`line w-8 h-0.5 transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'opacity-0' : ''
+          }`}></div>
+          <div className={`line w-8 h-0.5 transition-all duration-300 ease-in-out transform ${
+            isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+          }`}></div>
+        </button>*/}
+
+        <button
+          onClick={toggleMobileMenu}
+          className={`mobile-menu-button md:hidden flex flex-row justify-center items-center w-12 h-12 space-x-[0.25rem] group relative transition-all duration-300 ease-in-out transform  ${
+            isMobileMenuOpen ? "rotate-90  -translate-y-2" : ""
+          }`}
+          aria-label="Toggle mobile menu"
+        >
+          {/* Dumbbell-style hamburger lines  */}
+          <div
+            className={`line h-1 w-[1.2rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "scale-y-[0%]" : ""
+            }`}
+          ></div>
+          <div
+            className={`line h-10 w-[0.53rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "" : ""
+            }`}
+          ></div>
+          <div
+            className={`line h-10 w-[0.3rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "scale-y-[70%]" : ""
+            }`}
+          ></div>
+          <div
+            className={`line h-8 w-[0.35rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "scale-y-[50%]" : ""
+            }`}
+          ></div>
+          <div
+            className={`line h-4 w-[0.2rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "scale-y-[20%]" : ""
+            }`}
+          ></div>
+        </button>
+      </nav>
+
+      {/* Mobile Dropdown Menu */}
+      <div
+        className={`mobile-dropdown fixed ${topClass} left-0 w-full z-40 transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-full opacity-0 pointer-events-none"
+        }`}
+      >
+        <div
+          className={`glass-nav-mobile ${
+            useGlassEffect
+              ? "backdrop-blur-sm bg-white/10 border-b border-white/20"
+              : "bg-black/95 border-b border-white/20"
+          } shadow-lg pt-20 pb-6`}
+        >
+          <ul className="flex flex-col items-center space-y-6 px-8">
+            <li className="mobile-menu-item text-white font-medium text-lg hover:text-gray-300 transition-colors duration-200">
+              <Link href="/" onClick={closeMobileMenu}>
+                Home
+              </Link>
+            </li>
+            <li className="mobile-menu-item text-white font-medium text-lg hover:text-gray-300 transition-colors duration-200">
+              <a
+                href="/about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  closeMobileMenu();
+                  router.push("/about", { onTransitionReady: slideInOut });
+                }}
+              >
+                About
+              </a>
+            </li>
+            <li className="mobile-menu-item text-white font-medium text-lg hover:text-gray-300 transition-colors duration-200">
+              <a
+                href="/contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  closeMobileMenu();
+                  router.push("/contact", { onTransitionReady: slideInOut });
+                }}
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <ul className="flex space-x-8">
-        <li className="text-white font-medium hover:underline cursor-pointer">
-          <Link href="/">Home</Link>
-          {/* <a
-            href="/"
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/", { onTransitionReady: slideInOut });
-            }}
-          >
-            Home
-          </a> */}
-        </li>
-        <li className="text-white font-medium hover:underline cursor-pointer">
-          {/* <Link
-            href="/about"
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/about", { onTransitionReady: pageAnimation });
-            }}
-          >
-            About
-          </Link> */}
-          <a
-            href="/about"
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/about", { onTransitionReady: slideInOut });
-            }}
-          >
-            About
-          </a>
-        </li>
-        <li className="text-white font-medium hover:underline cursor-pointer">
-          {/* <Link
-            href="/contact"
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/contact", { onTransitionReady:  });
-            }}
-          >
-            Contact
-          </Link> */}
-          <a
-            href="/contact"
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/contact", { onTransitionReady: slideInOut });
-            }}
-          >
-            Contact
-          </a>
-        </li>
-      </ul>
-    </nav>
+    </>
   );
 }

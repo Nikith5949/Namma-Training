@@ -1,0 +1,155 @@
+/* Mobile Menu Button Styles */
+.mobile-menu-button {
+  position: relative;
+  overflow: visible;
+}
+
+/* Dumbbell weights with glow effect */
+/* .mobile-menu-button::before,
+.mobile-menu-button::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #ffffff 0%, #e5e7eb 100%);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+} */
+/* .mobile-menu-button::before,
+.mobile-menu-button::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #ffffff 0%, #e5e7eb 100%);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.mobile-menu-button::before {
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mobile-menu-button::after {
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+} */
+
+/* Enhanced line animations */
+.mobile-menu-button .line {
+  position: relative;
+  background: linear-gradient(90deg, #ffffff 0%, #e5e7eb 100%);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+/* Mobile dropdown animations */
+.mobile-dropdown {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Smooth slide animation for mobile menu */
+.mobile-dropdown-enter {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.mobile-dropdown-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-dropdown-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-dropdown-exit-active {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced mobile menu items */
+.mobile-menu-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-menu-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ffffff 0%, #e5e7eb 100%);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.mobile-menu-item:hover::before {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    margin-right: 8px;
+  }
+  
+  .mobile-dropdown {
+    padding-top: 5rem;
+  }
+}
+
+/* Glass effect enhancement for mobile */
+@media (max-width: 768px) {
+  .glass-nav-mobile {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+  
+  /* Better touch interactions for mobile */
+  .mobile-menu-button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .mobile-menu-item {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    padding: 12px 0;
+  }
+  
+  /* Smooth mobile animations */
+  .mobile-dropdown {
+    will-change: transform, opacity;
+  }
+  
+  /* Prevent body scroll when mobile menu is open */
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+}
+
+/* Enhanced dumbbell effect on hover */
+@media (hover: hover) {
+  .mobile-menu-button:hover .line {
+    background: linear-gradient(90deg, #f3cccc 0%, #fb2424 80%);
+    box-shadow: 0 0 8px rgba(214, 134, 134, 0.521);
+  }
+  
+  .mobile-menu-button:hover::before,
+  .mobile-menu-button:hover::after {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+    transform: translateY(-50%) scale(1.1);
+  }
+}

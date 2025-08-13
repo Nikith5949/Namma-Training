@@ -19,7 +19,11 @@ export default function NavWithDialogue() {
       // Track if user has scrolled from the very top
       setIsScrolled(currentScrollY > 40);
 
-      if (currentScrollY > lastScrollY.current && currentScrollY > 10) {
+      // On mobile, be more sensitive to scroll direction changes
+      const isMobile = window.innerWidth <= 768;
+      const scrollThreshold = isMobile ? 5 : 10;
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > scrollThreshold) {
         // Scrolling down
         setShowNav(false);
         if (isDialogueOpen) {
