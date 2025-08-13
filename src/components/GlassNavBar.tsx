@@ -4,7 +4,7 @@ import "@/styles/GlassNavBar.css";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-// import Link from "next/link";
+import Link from "next/link";
 import { navBarLogo } from "@/components/all_assets";
 import { useTransitionRouter } from "next-view-transitions";
 
@@ -122,8 +122,8 @@ export default function GlassNavBar({
       </div>
       <ul className="flex space-x-8">
         <li className="text-white font-medium hover:underline cursor-pointer">
-          {/* <Link href="/">Home</Link> */}
-          <a
+          <Link href="/">Home</Link>
+          {/* <a
             href="/"
             onClick={(e) => {
               e.preventDefault();
@@ -131,7 +131,7 @@ export default function GlassNavBar({
             }}
           >
             Home
-          </a>
+          </a> */}
         </li>
         <li className="text-white font-medium hover:underline cursor-pointer">
           {/* <Link
