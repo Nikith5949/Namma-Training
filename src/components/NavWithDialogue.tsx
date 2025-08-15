@@ -62,7 +62,7 @@ export default function NavWithDialogue() {
 
   const handleDialogueHeightChange = (height: number) => {
     setDialogueHeight(height);
-    console.log("Dialogue height changed:", height);
+    // console.log("Dialogue height changed:", height);
   };
 
   // Calculate the top position for the navbar
