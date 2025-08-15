@@ -12,7 +12,11 @@ gsap.registerPlugin(useGSAP);
 
 export default function Section() {
   useGSAP(() => {
-    const titlesplit = SplitText.create(".section-title", { type: "words" });
+    const titlesplit = SplitText.create(".section-title", {
+      type: "words",
+      // wordsClass: "split-word",
+      // exclude: ".athletem",
+    });
 
     // Immediately hide words before animation
 
@@ -36,12 +40,11 @@ export default function Section() {
         // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
         ease: "power4.in",
       })
-      .to(".athletem", {
-        duration: 0.6,
-        opacity: 1,
-        scale: 1,
-        ease: "power4.in",
-      })
+      .fromTo(
+        ".athletem",
+        { opacity: 0, scale: 4 },
+        { duration: 0.6, opacity: 1, scale: 1, ease: "power4.in" }
+      )
       .to(".background-video", {
         duration: 0.6,
         opacity: 1,
