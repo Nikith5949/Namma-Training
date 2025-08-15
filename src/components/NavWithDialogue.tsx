@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 export default function NavWithDialogue() {
   const [isDialogueOpen, setIsDialogueOpen] = React.useState(true);
   const [showDialogue, setShowDialogue] = React.useState(true);
+  const [dialogueHeight, setDialogueHeight] = React.useState(0);
   const [showNav, setShowNav] = React.useState(true);
   const [isScrolled, setIsScrolled] = React.useState(false);
   const lastScrollY = React.useRef(0);
@@ -23,7 +24,10 @@ export default function NavWithDialogue() {
       const isMobile = window.innerWidth <= 768;
       const scrollThreshold = isMobile ? 5 : 10;
 
-      if (currentScrollY > lastScrollY.current && currentScrollY > scrollThreshold) {
+      if (
+        currentScrollY > lastScrollY.current &&
+        currentScrollY > scrollThreshold
+      ) {
         // Scrolling down
         setShowNav(false);
         if (isDialogueOpen) {
@@ -50,13 +54,19 @@ export default function NavWithDialogue() {
       // Any GSAP animations can be added here if needed
       // The useGSAP hook automatically handles cleanup on unmount
     },
-    { 
+    {
       dependencies: [showDialogue, showNav, isDialogueOpen],
-      scope: navWrapperRef 
+      scope: navWrapperRef,
     }
   );
 
-  const navTopClass = isDialogueOpen && showDialogue ? "top-7" : "top-0";
+  const handleDialogueHeightChange = (height: number) => {
+    setDialogueHeight(height);
+    console.log("Dialogue height changed:", height);
+  };
+
+  // Calculate the top position for the navbar
+  const navTopOffset = isDialogueOpen && showDialogue ? dialogueHeight : 0;
 
   return (
     <>
@@ -64,10 +74,11 @@ export default function NavWithDialogue() {
         open={isDialogueOpen}
         showDialogue={showDialogue}
         onClose={() => setIsDialogueOpen(false)}
+        onHeightChange={handleDialogueHeightChange}
       />
 
       <GlassNavBar
-        topClass={navTopClass}
+        topOffset={navTopOffset}
         showNav={showNav}
         isScrolled={isScrolled}
       />

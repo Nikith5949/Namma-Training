@@ -11,6 +11,7 @@ interface Dialogue2Props {
   open: boolean;
   onClose: () => void;
   showDialogue: boolean;
+  onHeightChange: (height: number) => void;
 }
 
 const offers = [
@@ -26,6 +27,7 @@ export default function Dialogue2({
   open,
   onClose,
   showDialogue,
+  onHeightChange,
 }: Dialogue2Props) {
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -241,6 +243,12 @@ export default function Dialogue2({
       }
     };
   }, []);
+
+  React.useEffect(() => {
+    if (containerRef.current) {
+      onHeightChange(containerRef.current.offsetHeight);
+    }
+  }, [open, showDialogue, onHeightChange]);
 
   if (!open) return null;
 

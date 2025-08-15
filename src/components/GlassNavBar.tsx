@@ -13,13 +13,15 @@ import { useTransitionRouter } from "next-view-transitions";
  * Usage: Place <GlassNavBar /> at the top of your layout or page.
  */
 interface GlassNavBarProps {
-  topClass?: string;
+  topClass?: string; // Keep for backward compatibility
+  topOffset?: number; // New prop for dynamic positioning
   showNav: boolean;
   isScrolled?: boolean;
 }
 
 export default function GlassNavBar({
   topClass = "top-7",
+  topOffset,
   showNav,
   isScrolled = false,
 }: GlassNavBarProps) {
@@ -29,6 +31,11 @@ export default function GlassNavBar({
 
   // Use glass effect only when not scrolled (at the very top)
   const useGlassEffect = !isScrolled;
+
+  // Determine positioning: use topOffset if provided, otherwise fall back to topClass
+  const navPositioning =
+    topOffset !== undefined ? { top: `${topOffset}px` } : {};
+  const navClassPositioning = topOffset !== undefined ? "" : topClass;
 
   function slideInOut() {
     document.documentElement.animate(
@@ -172,14 +179,17 @@ export default function GlassNavBar({
     <>
       <nav
         ref={navRef}
-        className={`fixed ${topClass} left-0 w-full z-50 ${
+        className={`fixed ${navClassPositioning} left-0 w-full z-50 ${
           useGlassEffect
             ? "backdrop-blur-sm bg-white/5 border-b border-white/10"
             : "bg-black border-b border-white/10"
         } shadow-lg flex items-center justify-between px-4 sm:px-8 py-1`}
         style={{
+          ...navPositioning,
           WebkitBackdropFilter: useGlassEffect ? "blur(12px)" : "none",
           willChange: "transform, opacity",
+          transition:
+            topOffset !== undefined ? "top 0.3s ease-in-out" : undefined,
         }}
       >
         <div className="flex items-center space-x-4">
@@ -223,25 +233,7 @@ export default function GlassNavBar({
           </li>
         </ul>
 
-        {/* Mobile Menu Button */}
-        {/* <button
-          onClick={toggleMobileMenu}
-          className="mobile-menu-button md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 group relative"
-          aria-label="Toggle mobile menu"
-        >
-          {/* deadlift Dumbbell-style hamburger lines 
-          <div className={`line w-8 h-0.5 transition-all duration-300 ease-in-out transform ${
-            isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
-          }`}></div>
-          <div className={`line w-8 h-0.5 transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'opacity-0' : ''
-          }`}></div>
-          <div className={`line w-8 h-0.5 transition-all duration-300 ease-in-out transform ${
-            isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
-          }`}></div>
-        </button>*/}
-
-        {/* deadliftonly right style hamburger lines */}
+        {/* Mobile Menu Button - deadliftonly right style hamburger lines */}
         <button
           onClick={toggleMobileMenu}
           className={`mobile-menu-button md:hidden flex flex-row justify-center items-center w-12 h-12 space-x-[0.25rem] group relative transition-all duration-300 ease-in-out transform  ${
@@ -275,55 +267,22 @@ export default function GlassNavBar({
             }`}
           ></div>
         </button>
-
-        {/* deadliftonly right style hamburger lines */}
-        {/* 
-        <button
-          onClick={toggleMobileMenu}
-          className={`mobile-menu-button md:hidden flex flex-row justify-center items-center w-12 h-12 space-x-[0.25rem] group relative transition-all duration-300 ease-in-out transform  ${
-            isMobileMenuOpen ? "" : ""
-          }`}
-          aria-label="Toggle mobile menu"
-        >
-          <div
-            className={`line h-8 w-[0.4rem] transition-all duration-300 ease-in-out transform ${
-              isMobileMenuOpen ? "translate-x-[-1rem]" : ""
-            }`}
-          ></div>
-
-          <div
-            className={`line h-6 w-[0.3rem] transition-all duration-300 ease-in-out transform ${
-              isMobileMenuOpen ? "translate-x-[-0.5rem]" : ""
-            }`}
-          ></div>
-
-          <div
-            className={`line h-1 w-[2rem] transition-all duration-300 ease-in-out transform ${
-              isMobileMenuOpen ? "" : ""
-            }`}
-          ></div>
-
-          <div
-            className={`line h-6 w-[0.3rem] transition-all duration-300 ease-in-out transform ${
-              isMobileMenuOpen ? "translate-x-[0.5rem]" : ""
-            }`}
-          ></div>
-
-          <div
-            className={`line h-8 w-[0.4rem] transition-all duration-300 ease-in-out transform ${
-              isMobileMenuOpen ? "translate-x-[1rem]" : ""
-            }`}
-          ></div>
-        </button> */}
       </nav>
 
       {/* Mobile Dropdown Menu */}
       <div
-        className={`mobile-dropdown fixed ${topClass} left-0 w-full z-40 transition-all duration-300 ease-in-out ${
+        className={`mobile-dropdown fixed left-0 w-full z-40 transition-all duration-300 ease-in-out ${
           isMobileMenuOpen
             ? "translate-y-0 opacity-100"
             : "-translate-y-full opacity-0 pointer-events-none"
         }`}
+        style={{
+          ...navPositioning,
+          transition:
+            topOffset !== undefined
+              ? "top 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out"
+              : undefined,
+        }}
       >
         <div
           className={`glass-nav-mobile ${
