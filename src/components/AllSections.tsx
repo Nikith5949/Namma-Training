@@ -28,7 +28,7 @@ export default function AllSections() {
           }}
         />
         <Section />
-        <div className="h-[40vh]"></div>
+        <div className="h-[10vh] sm:h-[20vh]  md:h-[40vh] lg:h-[40vh]"></div>
         <Section2 />
       </div>
 

@@ -241,6 +241,7 @@ export default function GlassNavBar({
           }`}></div>
         </button>*/}
 
+        {/* deadliftonly right style hamburger lines */}
         <button
           onClick={toggleMobileMenu}
           className={`mobile-menu-button md:hidden flex flex-row justify-center items-center w-12 h-12 space-x-[0.25rem] group relative transition-all duration-300 ease-in-out transform  ${
@@ -248,10 +249,9 @@ export default function GlassNavBar({
           }`}
           aria-label="Toggle mobile menu"
         >
-          {/* Dumbbell-style hamburger lines  */}
           <div
             className={`line h-1 w-[1.2rem] transition-all duration-300 ease-in-out transform ${
-              isMobileMenuOpen ? "scale-y-[0%]" : ""
+              isMobileMenuOpen ? "scale-x-[0%]" : ""
             }`}
           ></div>
           <div
@@ -275,6 +275,46 @@ export default function GlassNavBar({
             }`}
           ></div>
         </button>
+
+        {/* deadliftonly right style hamburger lines */}
+        {/* 
+        <button
+          onClick={toggleMobileMenu}
+          className={`mobile-menu-button md:hidden flex flex-row justify-center items-center w-12 h-12 space-x-[0.25rem] group relative transition-all duration-300 ease-in-out transform  ${
+            isMobileMenuOpen ? "" : ""
+          }`}
+          aria-label="Toggle mobile menu"
+        >
+          <div
+            className={`line h-8 w-[0.4rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "translate-x-[-1rem]" : ""
+            }`}
+          ></div>
+
+          <div
+            className={`line h-6 w-[0.3rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "translate-x-[-0.5rem]" : ""
+            }`}
+          ></div>
+
+          <div
+            className={`line h-1 w-[2rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "" : ""
+            }`}
+          ></div>
+
+          <div
+            className={`line h-6 w-[0.3rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "translate-x-[0.5rem]" : ""
+            }`}
+          ></div>
+
+          <div
+            className={`line h-8 w-[0.4rem] transition-all duration-300 ease-in-out transform ${
+              isMobileMenuOpen ? "translate-x-[1rem]" : ""
+            }`}
+          ></div>
+        </button> */}
       </nav>
 
       {/* Mobile Dropdown Menu */}
@@ -293,12 +333,12 @@ export default function GlassNavBar({
           } shadow-lg pt-20 pb-6`}
         >
           <ul className="flex flex-col items-center space-y-6 px-8">
-            <li className="mobile-menu-item text-white font-medium text-lg hover:text-gray-300 transition-colors duration-200">
+            <li className="mobile-menu-item text-white font-medium text-lg hover:text-[var(--theme-color)] transition-colors duration-200">
               <Link href="/" onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
-            <li className="mobile-menu-item text-white font-medium text-lg hover:text-gray-300 transition-colors duration-200">
+            <li className="mobile-menu-item text-white font-medium text-lg hover:text-[var(--theme-color)] transition-colors duration-200">
               <a
                 href="/about"
                 onClick={(e) => {
@@ -310,7 +350,7 @@ export default function GlassNavBar({
                 About
               </a>
             </li>
-            <li className="mobile-menu-item text-white font-medium text-lg hover:text-gray-300 transition-colors duration-200">
+            <li className="mobile-menu-item text-white font-medium text-lg hover:text-[var(--theme-color)] transition-colors duration-200">
               <a
                 href="/contact"
                 onClick={(e) => {

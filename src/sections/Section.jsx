@@ -31,9 +31,15 @@ export default function Section() {
       .to(".athlete", {
         duration: 0.6,
         opacity: 1,
-        scale: 1,
+        scale: 1.05,
 
         // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "power4.in",
+      })
+      .to(".athletem", {
+        duration: 0.6,
+        opacity: 1,
+        scale: 1,
         ease: "power4.in",
       })
       .to(".background-video", {
@@ -46,16 +52,35 @@ export default function Section() {
   });
 
   return (
-    <section className="section-container top-0 left-0 w-screen h-screen flex items-center">
-      <div className="section-grid flex justify-center items-center">
-        <div className="section-content fixed z-10 opacity-0 ">
+    <section className="section-container top-0 left-0 w-screen h-screen flex justify-center items-center">
+      <div className="section-grid  flex justify-center items-center">
+        <div className="section-content gap-0 w-full md:fixed lg:fixed z-10 opacity-0 ">
           <div className="section-title">
-            EVERY.
+            LIFT.
             <br />
-            BODY.
-            <br />
-            IS AN.
-            <br />
+            <div
+              style={
+                {
+                  // clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
+                }
+              }
+              className="section-athletem h-full md:hidden "
+            >
+              <div
+                className="athletem scale-[4] opacity-1"
+                style={{
+                  color: "transparent",
+                  WebkitTextStroke: "4px white",
+                  display: "inline-block",
+                  textAlign: "right",
+                  fontWeight: "bold",
+                }}
+              >
+                STRYV.
+              </div>
+            </div>
+            <span className="title-spacer"></span>
+            THRIVE.
           </div>
         </div>
         <div
@@ -64,10 +89,10 @@ export default function Section() {
               // clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
             }
           }
-          className="section-athlete fixed z-13 translate-y-[168px] opacity-0"
+          className="section-athlete hidden md:fixed md:block lg:fixed lg:block md:mb-[330px] lg:mb-[330px] z-13 lg:translate-y-[168px] md:translate-y-[168px] opacity-0"
         >
           <div
-            className="athlete scale-[3] opacity-0"
+            className="athlete scale-[4] opacity-0"
             style={{
               color: "transparent",
               WebkitTextStroke: "4px white",
@@ -76,7 +101,7 @@ export default function Section() {
               fontWeight: "bold",
             }}
           >
-            ATHLETE.
+            STRYV.
           </div>
         </div>
 

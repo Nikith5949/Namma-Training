@@ -22,6 +22,7 @@
 .section-grid {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.5rem;
   width: 100%; /* Takes full available width */
   max-width: 80%;
@@ -49,17 +50,18 @@
   font-size: 100px;
   line-height: 0.8;
   opacity: 1;
-  width: 30%;
+  width: 100%;
+
   transform: rotate(-3deg);
 
-  text-align: right;
+  text-align: center;
   font-style: bold;
 }
 .section-title {
   font-size: 100px;
   line-height: 0.9;
   opacity: 1;
-  text-align: right;
+  text-align: center;
   font-style: bold;
 }
 
@@ -78,10 +80,92 @@
   height: 100% !important;
   border-radius: 12px;
 }
-
+.title-spacer {
+  display: block;
+  height: 93px; /* adjust gap */
+}
 /* Remove unused styles */
 .section-column,
 .section-left,
 .section-right {
   display: none;
+}
+
+/* Mobile-only adjustments: center content and prevent horizontal overflow */
+@media (max-width: 768px) {
+  .section-container {
+    width: 100vw;
+    height: 100svh;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-grid {
+    max-width: 100%;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 30%;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+  .title-spacer {
+    display: block;
+    height: 0px; /* adjust gap */
+  }
+
+  .section-content {
+    position: static !important;
+
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .section-title br {
+    display: block;
+    content: "";
+    margin-bottom: 24px; /* Adjust gap size */
+  }
+
+  .section-title {
+    font-size: clamp(32px, 10vw, 56px);
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .section-athletem {
+    font-size: 100px;
+    line-height: 0.8;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+
+    transform: rotate(-3deg);
+
+    text-align: center;
+    font-style: bold;
+  }
+  .athletem {
+    background-color: var(--theme-color);
+
+    border: 7px solid var(--theme-color);
+  }
+  .section-gridvid .background-video {
+    position: static !important;
+    display: block;
+    width: 85vw !important;
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+    left: 0 !important;
+    top: 0 !important;
+  }
 }
