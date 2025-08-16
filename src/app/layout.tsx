@@ -25,7 +25,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" className={`${SuissenIntl.variable}`}>
         <body className="overflow-x-hidden">
-          <NavWithDialogue />
+          {/* <NavWithDialogue /> */}
 
           {/* AnimatePresence must have the motion component as direct keyed child */}
           {/* <AnimatePresence mode="wait" initial={false}> */}
