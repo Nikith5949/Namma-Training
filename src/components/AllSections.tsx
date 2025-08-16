@@ -19,7 +19,7 @@ export default function AllSections() {
     <>
       <div className="all-sections-container ">
         <div
-          className=" bg-init fixed top-0 left-0 w-full h-full -z-10
+          className="hidden md:block bg-init fixed top-0 left-0 w-full h-full -z-10
              before:content-[''] before:absolute before:inset-0 
              before:bg-gradient-to-b before:from-[rgba(12,12,12,0.592)] before:to-[rgba(17,17,17,0.59)]"
           style={{
@@ -29,8 +29,8 @@ export default function AllSections() {
         />
         <Section />
         <div className="h-[10vh] sm:h-[20vh]  md:h-[40vh] lg:h-[40vh]"></div>
-        <Section2 />
       </div>
+      <Section2 />
 
       <Section3 />
 

@@ -85,7 +85,7 @@
 .all-sections-container {
   position: relative;
 }
-.background-overlay {
+/* .background-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -99,12 +99,15 @@
   z-index: -1;
 }
 
-/* Add this for mobile compatibility */
-@media (max-width: 768px), (hover: none) {
+@media screen and (max-width: 768px) {
   .background-overlay {
-    background-attachment: scroll !important;
+    position: static !important;
+    height: 100%;
+    background: linear-gradient(rgba(12, 12, 12, 0.592), rgba(17, 17, 17, 0.59)),
+      url("/assets/gym2.jpg") no-repeat center center;
+    background-size: ;
   }
-}
+} */
 
 /* scrollbar - Chrome specific fixes */
 /* Force hide scrollbar track in Chrome */
