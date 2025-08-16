@@ -20,6 +20,7 @@ export default function MobileSeparatorCard({
         alt={title}
         width={500}
         height={300}
+        loading="lazy"
         className="w-full  shadow-md object-cover"
         style={{ objectFit: "cover" }}
       />
