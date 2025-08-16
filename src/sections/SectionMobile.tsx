@@ -16,20 +16,22 @@ export default function SectionMobile() {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Batch all elements with .reveal class
-      ScrollTrigger.batch(".reveal", {
+      // Get all reveal elements within this section only
+      const reveals = sectionRef.current!.querySelectorAll(".reveal");
+
+      // Set initial state immediately to prevent flash
+      gsap.set(reveals, { opacity: 0, y: 40 });
+
+      // Use ScrollTrigger.batch for better performance with many elements
+      ScrollTrigger.batch(reveals, {
         onEnter: (batch) =>
-          gsap.fromTo(
-            batch,
-            { opacity: 0, y: 40 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power3.out",
-              stagger: 0.15,
-            }
-          ),
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.15,
+          }),
         start: "top 85%",
       });
     }, sectionRef);
@@ -60,12 +62,14 @@ export default function SectionMobile() {
                 <br />
                 LIFE
               </h2>
+
               {/* Cards stacked below heading */}
               {cards1.map((card) => (
                 <MobileSeparatorCard key={card.somekey} {...card} />
               ))}
             </div>
           </div>
+
           {/* Bottom Spacer and Divider */}
           <div className="h-[40svh]" />
           <div className="h-0.5 w-[90svw] max-w-6xl mx-auto bg-[var(--theme-color)]" />

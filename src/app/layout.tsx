@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 // import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-// import NavWithDialogue from "../components/NavWithDialogue";
+import NavWithDialogue from "../components/NavWithDialogue";
 // import { CustomTransition } from "@/components/PageTransition2";
 import { ViewTransitions } from "next-view-transitions";
 const SuissenIntl = localFont({
@@ -25,7 +25,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" className={`${SuissenIntl.variable}`}>
         <body className="overflow-x-hidden">
-          {/* <NavWithDialogue /> */}
+          <NavWithDialogue />
 
           {/* AnimatePresence must have the motion component as direct keyed child */}
           {/* <AnimatePresence mode="wait" initial={false}> */}

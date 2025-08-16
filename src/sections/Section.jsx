@@ -3,7 +3,7 @@ import "@/styles/Section.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
-// import { videonamma } from "@/components/all_assets";
+import { videonamma } from "@/components/all_assets";
 
 // import { Canvas } from "@react-three/fiber";
 // import ThreeModel from "@/components/ThreeModel";
@@ -45,14 +45,14 @@ export default function Section() {
         { opacity: 0, scale: 4 },
         { duration: 0.6, opacity: 1, scale: 1, ease: "power4.in" },
         "<"
-      );
-    // .to(".background-video", {
-    //   duration: 0.6,
-    //   opacity: 1,
-    //   scale: 1,
-    //   clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-    //   ease: "power4.in",
-    // });
+      )
+      .to(".background-video", {
+        duration: 0.6,
+        opacity: 1,
+        scale: 1,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "power4.in",
+      });
   });
 
   return (
@@ -111,7 +111,7 @@ export default function Section() {
 
         <div className="section-gridvid max-w-full">
           <div className="section-contentvid">
-            {/* <video
+            <video
               autoPlay
               loop
               muted
@@ -123,7 +123,7 @@ export default function Section() {
                 zIndex: 10,
                 clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
               }}
-            /> */}
+            />
           </div>
         </div>
       </div>

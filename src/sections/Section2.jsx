@@ -1,5 +1,5 @@
 import React from "react";
-// import { videonamma2 } from "@/components/all_assets";
+import { videonamma2 } from "@/components/all_assets";
 
 export default function Section2() {
   return (
@@ -12,14 +12,14 @@ export default function Section2() {
         <div className="h-full grid grid-cols-[4fr_3fr] gap-4 overflow-hidden max-md:grid-cols-1">
           {/* Video */}
           <div className="flex items-center h-full max-md:h-auto">
-            {/* <video
+            <video
               autoPlay
               loop
               muted
               playsInline
               className="w-full h-full object-cover max-md:h-auto"
               src={videonamma2}
-            /> */}
+            />
           </div>
 
           {/* Text */}
