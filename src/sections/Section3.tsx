@@ -4,24 +4,27 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "@/styles/Section.css";
 import gsap from "gsap";
 import Card from "@/components/Card";
+import MobileSeparatorCard from "@/components/MobileSeparatorCardProps";
 import { cards1 } from "@/components/assets";
 
 export default function Section3() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
 
-      // Background pinning
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom top",
-        pin: bgRef.current,
-        pinSpacing: false,
-      });
+      // ✅ Pin heading only for desktop/tablet
+      if (window.innerWidth >= 768) {
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top", // unpin when next section pushes it
+          pin: headingRef.current,
+          pinSpacing: false,
+        });
+      }
 
       // Refresh ScrollTrigger on images load
       const images = sectionRef.current?.querySelectorAll("img");
@@ -40,13 +43,11 @@ export default function Section3() {
         className="section-container3 relative z-30 bg-[var(--theme-bgcolor)] w-full overflow-hidden"
       >
         <div className="all-containers">
-          {/* Background Section */}
-          <div
-            ref={bgRef}
-            className="section-background3 w-full h-screen flex flex-col items-center justify-center gap-8 px-4 lg:px-8"
-          >
+          {/* Background Heading (pinned only on desktop/tablet) */}
+          <div className="hidden md:flex w-full h-screen flex-col items-center justify-center px-4 lg:px-8">
             <div className="w-full max-w-6xl flex flex-col items-center justify-center">
-              <div
+              <h2
+                ref={headingRef}
                 className="font-light text-[var(--theme-color)] text-4xl sm:text-5xl lg:text-6xl text-center px-4"
                 style={{ fontFamily: "var(--font-perpetua-light)" }}
               >
@@ -55,24 +56,45 @@ export default function Section3() {
                 IN
                 <br />
                 LIFE
-              </div>
+              </h2>
             </div>
           </div>
 
           {/* Cards Grid */}
-          <div className="cards-grid w-full flex justify-center px-4 lg:px-8 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
+          <div className="cards-grid w-full flex justify-center lg:px-8 py-12">
+            {/* Desktop/tablet cards with animations */}
+            <div className="hidden md:grid md:grid-cols-2 gap-8 w-full max-w-6xl">
               {cards1.map((card) => (
                 <div key={card.somekey} className="flex justify-center">
                   <Card {...card} />
                 </div>
               ))}
             </div>
+
+            {/* ✅ Mobile view */}
+            <div className="md:hidden w-full mx-auto flex flex-col items-center space-y-6 text-center">
+              {/* Heading (replaces background on mobile) */}
+              <h2
+                className="text-3xl w-[100%] font-light text-[var(--theme-color)]"
+                style={{ fontFamily: "var(--font-perpetua-light)" }}
+              >
+                ENERGIZE YOUR EXPERIENCE
+                <br />
+                IN
+                <br />
+                LIFE
+              </h2>
+
+              {/* Cards stacked below heading */}
+              {cards1.map((card) => (
+                <MobileSeparatorCard key={card.somekey} {...card} />
+              ))}
+            </div>
           </div>
 
           {/* Bottom Spacer and Divider */}
-          <div className="h-[40vh]"></div>
-          <div className="h-0.5 w-[90vw] max-w-6xl mx-auto bg-[var(--theme-color)]"></div>
+          <div className="h-[40vh]" />
+          <div className="h-0.5 w-[90vw] max-w-6xl mx-auto bg-[var(--theme-color)]" />
         </div>
       </section>
     </>

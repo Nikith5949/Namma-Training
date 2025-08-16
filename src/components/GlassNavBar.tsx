@@ -26,6 +26,8 @@ export default function GlassNavBar({
   isScrolled = false,
 }: GlassNavBarProps) {
   const navRef = useRef<HTMLElement>(null);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuContentRef = useRef<HTMLDivElement>(null);
   const router = useTransitionRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -82,7 +84,7 @@ export default function GlassNavBar({
     document.body.classList.remove("mobile-menu-open");
   };
 
-  // Close mobile menu when clicking outside
+  // Close mobile menu when clicking outside with animation
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -90,7 +92,7 @@ export default function GlassNavBar({
         navRef.current &&
         !navRef.current.contains(event.target as Node)
       ) {
-        setIsMobileMenuOpen(false);
+        closeMobileMenu();
       }
     };
 
@@ -103,11 +105,11 @@ export default function GlassNavBar({
     };
   }, [isMobileMenuOpen]);
 
-  // Close mobile menu on escape key
+  // Close mobile menu on escape key with animation
   React.useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
+        closeMobileMenu();
       }
     };
 
@@ -117,6 +119,23 @@ export default function GlassNavBar({
 
     return () => {
       document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu when scrolling with animation
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (isMobileMenuOpen) {
+        closeMobileMenu();
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [isMobileMenuOpen]);
 
@@ -140,13 +159,13 @@ export default function GlassNavBar({
     () => {
       if (!navRef.current) return;
 
-      // Set initial state
+      // Set initial state for navbar
       gsap.set(navRef.current, {
         opacity: 0,
         y: -20,
       });
 
-      // Animation functions
+      // Animation functions for navbar
       const animateNavIn = () => {
         gsap.to(navRef.current, {
           opacity: 1,
@@ -175,6 +194,103 @@ export default function GlassNavBar({
     { dependencies: [showNav], scope: navRef }
   );
 
+  // ✅ Run once on mount - set hidden state
+  React.useEffect(() => {
+    if (!mobileDropdownRef.current || !mobileMenuContentRef.current) return;
+
+    const dropdown = mobileDropdownRef.current;
+    const content = mobileMenuContentRef.current;
+    const menuItems = content.querySelectorAll(".mobile-menu-item");
+
+    gsap.set(dropdown, { display: "none", opacity: 0 });
+    gsap.set(content, { y: -50, opacity: 0 });
+    gsap.set(menuItems, { y: -20, opacity: 0 });
+  }, []);
+
+  // GSAP animations for mobile dropdown menu
+  useGSAP(
+    () => {
+      if (!mobileDropdownRef.current || !mobileMenuContentRef.current) return;
+
+      const dropdown = mobileDropdownRef.current;
+      const content = mobileMenuContentRef.current;
+      const menuItems = content.querySelectorAll(".mobile-menu-item");
+
+      const slideDown = () => {
+        const tl = gsap.timeline();
+
+        tl.set(dropdown, { display: "block" })
+          .to(dropdown, {
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.out",
+          })
+          .to(
+            content,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.4,
+              ease: "power3.out",
+            },
+            "-=0.2"
+          )
+          .to(
+            menuItems,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.3,
+              stagger: 0.1,
+              ease: "power2.out",
+            },
+            "-=0.2"
+          );
+      };
+
+      const slideUp = () => {
+        const tl = gsap.timeline();
+
+        tl.to(menuItems, {
+          y: -20,
+          opacity: 0,
+          duration: 0.2,
+          stagger: 0.05,
+          ease: "power2.in",
+        })
+          .to(
+            content,
+            {
+              y: -50,
+              opacity: 0,
+              duration: 0.3,
+              ease: "power2.in",
+            },
+            "-=0.1"
+          )
+          .to(
+            dropdown,
+            {
+              opacity: 0,
+              duration: 0.2,
+              ease: "power2.in",
+              onComplete: () => {
+                gsap.set(dropdown, { display: "none" });
+              },
+            },
+            "-=0.1"
+          );
+      };
+
+      if (isMobileMenuOpen) {
+        slideDown();
+      } else if (dropdown.style.display === "block") {
+        slideUp();
+      }
+    },
+    { dependencies: [isMobileMenuOpen], scope: mobileDropdownRef }
+  );
+
   return (
     <>
       <nav
@@ -193,7 +309,7 @@ export default function GlassNavBar({
         }}
       >
         <div className="flex items-center space-x-4">
-          {/* Logo - using namma.svg */}
+          {/* Logo */}
           <Image
             src={navBarLogo}
             alt="Go Namma Logo"
@@ -233,7 +349,7 @@ export default function GlassNavBar({
           </li>
         </ul>
 
-        {/* Mobile Menu Button - deadliftonly right style hamburger lines */}
+        {/* Mobile Menu Button */}
         <button
           onClick={toggleMobileMenu}
           className={`mobile-menu-button md:hidden flex flex-row justify-center items-center w-12 h-12 space-x-[0.25rem] group relative transition-all duration-300 ease-in-out transform  ${
@@ -246,11 +362,7 @@ export default function GlassNavBar({
               isMobileMenuOpen ? "scale-x-[0%]" : ""
             }`}
           ></div>
-          <div
-            className={`line h-10 w-[0.53rem] transition-all duration-300 ease-in-out transform ${
-              isMobileMenuOpen ? "" : ""
-            }`}
-          ></div>
+          <div className="line h-10 w-[0.53rem] transition-all duration-300 ease-in-out transform"></div>
           <div
             className={`line h-10 w-[0.3rem] transition-all duration-300 ease-in-out transform ${
               isMobileMenuOpen ? "scale-y-[70%]" : ""
@@ -271,20 +383,16 @@ export default function GlassNavBar({
 
       {/* Mobile Dropdown Menu */}
       <div
-        className={`mobile-dropdown fixed left-0 w-full z-40 transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-full opacity-0 pointer-events-none"
-        }`}
+        ref={mobileDropdownRef}
+        className="mobile-dropdown fixed left-0 w-full z-40 opacity-0"
         style={{
           ...navPositioning,
           transition:
-            topOffset !== undefined
-              ? "top 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out"
-              : undefined,
+            topOffset !== undefined ? "top 0.3s ease-in-out" : undefined,
         }}
       >
         <div
+          ref={mobileMenuContentRef}
           className={`glass-nav-mobile ${
             useGlassEffect
               ? "backdrop-blur-sm bg-white/10 border-b border-white/20"
