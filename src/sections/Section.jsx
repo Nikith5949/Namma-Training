@@ -4,7 +4,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { videonamma } from "@/components/all_assets";
-
 // import { Canvas } from "@react-three/fiber";
 // import ThreeModel from "@/components/ThreeModel";
 
@@ -19,9 +18,7 @@ export default function Section() {
     });
 
     // Immediately hide words before animation
-
-    const t1 = gsap.timeline({ delay: 0.4 });
-
+    const t1 = gsap.timeline({ delay: 0.2 });
     t1.to(".section-content", {
       opacity: 1,
       scale: 1,
@@ -32,19 +29,27 @@ export default function Section() {
         opacity: 0, // This now works correctly
         ease: "power4.in",
       })
-      .to(".athlete", {
-        duration: 0.6,
-        opacity: 1,
-        scale: 1.05,
-
-        // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "power4.in",
-      })
+      .fromTo(
+        ".athlete",
+        { opacity: 0, scale: 4 },
+        {
+          duration: 0.4,
+          opacity: 1,
+          scale: 1.05,
+          ease: "power4.in",
+        }
+        // Start 0.1 seconds earlier (overlapping with previous animation)
+      )
       .fromTo(
         ".athletem",
         { opacity: 0, scale: 4 },
-        { duration: 0.6, opacity: 1, scale: 1, ease: "power4.in" },
-        "<"
+        {
+          duration: 0.4,
+          opacity: 1,
+          scale: 1,
+          ease: "power4.in",
+        },
+        "-=1" // This makes athletem start at the same time as athlete
       )
       .to(".background-video", {
         duration: 0.6,
@@ -57,7 +62,7 @@ export default function Section() {
 
   return (
     <section className="section-container top-0 left-0 w-screen h-screen flex justify-center items-center">
-      <div className="section-grid  flex justify-center items-center">
+      <div className="section-grid flex justify-center items-center">
         <div className="section-content gap-0 w-full md:fixed lg:fixed z-10 opacity-0 ">
           <div className="section-title">
             LIFT.
@@ -71,7 +76,7 @@ export default function Section() {
               className="section-athletem h-full md:hidden "
             >
               <div
-                className="athletem scale-[4] opacity-1"
+                className="athletem scale-[4] opacity-0"
                 style={{
                   color: "transparent",
                   WebkitTextStroke: "4px white",
@@ -108,7 +113,6 @@ export default function Section() {
             STRYV.
           </div>
         </div>
-
         <div className="section-gridvid max-w-full">
           <div className="section-contentvid">
             <video
@@ -116,7 +120,7 @@ export default function Section() {
               loop
               muted
               playsInline
-              className="background-video max-w-full w-[30svw]  mr-auto top-[30svh] left-[22svw] z-10"
+              className="background-video max-w-full w-[30svw] mr-auto top-[30svh] left-[22svw] z-10"
               src={videonamma}
               style={{
                 position: "relative",
@@ -129,8 +133,8 @@ export default function Section() {
       </div>
       {/* <div className="model-3d h-[100vh] w-[100vw]"> */}
       {/* <Canvas>
-          <ThreeModel />
-        </Canvas> */}
+        <ThreeModel />
+      </Canvas> */}
       {/* </div> */}
     </section>
   );

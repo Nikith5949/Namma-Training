@@ -27,25 +27,29 @@ export default function AllSections() {
       />
 
       {/* ✅ Mobile Background Wrapper */}
-      <div
-        className="md:hidden relative w-full"
-        style={{
-          background: `url(${section1bgimg}) no-repeat center center`,
-          backgroundSize: "cover",
-        }}
-      >
-        {/* dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/70 -z-0"></div>
+      <div className="md:hidden relative w-full min-h-screen">
+        <div
+          className="md:hidden relative w-full min-h-screen"
+          style={{
+            background: `url(${section1bgimg}) no-repeat center center`,
+            backgroundSize: "cover", // 👈 contain instead of cover
+            backgroundPosition: "center center", // optional tweak
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          {/* dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/70 -z-0"></div>
 
-        {/* All sections inside mobile background */}
-        <div className="relative z-10">
+          {/* All sections inside mobile background */}
+          {/* <div className="relative z-10"> */}
           <Section />
-          <div className="h-[10vh] sm:h-[20vh]" />
-          <Section2 />
-          <SectionMobile />
-          <Section4 />
-          <Section5 />
+          <div className="h-[20vh] sm:h-[20vh]" />
         </div>
+        <Section2 />
+        <SectionMobile />
+        <Section4 />
+        <Section5 />
+        {/* </div> */}
       </div>
 
       {/* ✅ Desktop Sections */}
