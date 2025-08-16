@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Section from "@/sections/Section";
-// import Section2 from "@/sections/Section2";
+import Section2 from "@/sections/Section2";
 import Section3 from "@/sections/Section3";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -41,6 +41,7 @@ export default function AllSections() {
         <div className="relative z-10">
           <Section />
           <div className="h-[10vh] sm:h-[20vh]" />
+          <Section2 />
           <SectionMobile />
           <Section4 />
           <Section5 />
@@ -51,6 +52,7 @@ export default function AllSections() {
       <div className="hidden md:block">
         <Section />
         <div className="h-[10vh] sm:h-[20vh] md:h-[40vh] lg:h-[40vh]" />
+        <Section2 />
         <Section3 />
         <Section4 />
         <Section5 />
