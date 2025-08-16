@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "@/styles/Section.css";
 import gsap from "gsap";
 import Card from "@/components/Card";
-import MobileSeparatorCard from "@/components/MobileSeparatorCardProps";
 import { cards1 } from "@/components/assets";
 
 export default function Section3() {
@@ -14,7 +13,6 @@ export default function Section3() {
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
-
       // ✅ Pin heading only for desktop/tablet
       if (window.innerWidth >= 768) {
         ScrollTrigger.create({
@@ -25,7 +23,6 @@ export default function Section3() {
           pinSpacing: false,
         });
       }
-
       // Refresh ScrollTrigger on images load
       const images = sectionRef.current?.querySelectorAll("img");
       images?.forEach((img) => {
@@ -59,7 +56,6 @@ export default function Section3() {
               </h2>
             </div>
           </div>
-
           {/* Cards Grid */}
           <div className="cards-grid w-full flex justify-center lg:px-8 py-12">
             {/* Desktop/tablet cards with animations */}
@@ -70,28 +66,7 @@ export default function Section3() {
                 </div>
               ))}
             </div>
-
-            {/* ✅ Mobile view */}
-            <div className="md:hidden w-full mx-auto flex flex-col items-center space-y-6 text-center">
-              {/* Heading (replaces background on mobile) */}
-              <h2
-                className="text-3xl w-[100%] font-light text-[var(--theme-color)]"
-                style={{ fontFamily: "var(--font-perpetua-light)" }}
-              >
-                ENERGIZE YOUR EXPERIENCE
-                <br />
-                IN
-                <br />
-                LIFE
-              </h2>
-
-              {/* Cards stacked below heading */}
-              {cards1.map((card) => (
-                <MobileSeparatorCard key={card.somekey} {...card} />
-              ))}
-            </div>
           </div>
-
           {/* Bottom Spacer and Divider */}
           <div className="h-[40vh]" />
           <div className="h-0.5 w-[90vw] max-w-6xl mx-auto bg-[var(--theme-color)]" />

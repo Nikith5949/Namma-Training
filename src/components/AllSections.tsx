@@ -10,6 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section4 from "@/sections/Section4";
 import Section5 from "@/sections/Section5";
 import { section1bgimg } from "@/components/all_assets";
+import SectionMobile from "@/sections/SectionMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,20 +21,24 @@ export default function AllSections() {
       <div className="all-sections-container ">
         <div
           className="hidden md:block bg-init fixed top-0 left-0 w-full h-full -z-10
-             before:content-[''] before:absolute before:inset-0 
-             before:bg-gradient-to-b before:from-[rgba(12,12,12,0.592)] before:to-[rgba(17,17,17,0.59)]"
+           before:content-[''] before:absolute before:inset-0
+           before:bg-gradient-to-b before:from-[rgba(12,12,12,0.592)] before:to-[rgba(17,17,17,0.59)]"
           style={{
             background: `url(${section1bgimg}) no-repeat center center fixed`,
             backgroundSize: "cover",
           }}
         />
         <Section />
-        <div className="h-[10vh] sm:h-[20vh]  md:h-[40vh] lg:h-[40vh]"></div>
+        <div className="h-[10vh] sm:h-[20vh] md:h-[40vh] lg:h-[40vh]"></div>
       </div>
       <Section2 />
-
-      <Section3 />
-
+      {/* Mobile: Use SectionMobile, Desktop/Tablet: Use Section3 */}
+      <div className="md:hidden">
+        <SectionMobile />
+      </div>
+      <div className="hidden md:block">
+        <Section3 />
+      </div>
       <Section4 />
       <Section5 />
     </>
