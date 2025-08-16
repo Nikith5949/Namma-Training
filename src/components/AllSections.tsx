@@ -19,7 +19,7 @@ export default function AllSections() {
     <>
       <div className="all-sections-container ">
         <div
-          className="fixed top-0 left-0 w-full h-full -z-10
+          className=" bg-init fixed top-0 left-0 w-full h-full -z-10
              before:content-[''] before:absolute before:inset-0 
              before:bg-gradient-to-b before:from-[rgba(12,12,12,0.592)] before:to-[rgba(17,17,17,0.59)]"
           style={{
