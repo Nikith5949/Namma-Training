@@ -90,7 +90,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  right: 0;
+  width: 100%; /* use 100% instead of 100vw to avoid including scrollbar width */
   height: 100vh;
   background: linear-gradient(rgba(12, 12, 12, 0.592), rgba(17, 17, 17, 0.59)),
     url("/assets/gym2.jpg") no-repeat center center fixed;
@@ -191,4 +192,14 @@ body {
 ::view-transition-old(root) {
   z-index: 1;
   animation: none !important;
+}
+
+html,
+body {
+  overflow-x: hidden; /* prevent horizontal scrolling on small screens */
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
 }
