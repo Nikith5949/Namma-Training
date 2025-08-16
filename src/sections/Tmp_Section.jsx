@@ -28,7 +28,7 @@ export default function Tmp_Section() {
           </p>
         </div>
       </div>
-      <div className="model-3d h-[100vh] w-[100vw]">
+      <div className="model-3d h-[100svh] w-[100svw]">
         {/* <Canvas>
           <ThreeModel />
         </Canvas> */}

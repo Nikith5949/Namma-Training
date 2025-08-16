@@ -17,9 +17,9 @@ const opacity = {
 };
 
 const slide = {
-  initial: { top: "100vh" },
+  initial: { top: "100%" },
   enter: { top: "0" },
-  exit: { top: "100vh" },
+  exit: { top: "100%" },
 };
 
 export const CustomTransition = ({ children }) => {

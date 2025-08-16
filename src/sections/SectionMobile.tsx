@@ -31,8 +31,8 @@ export default function SectionMobile() {
             </div>
           </div>
           {/* Bottom Spacer and Divider */}
-          <div className="h-[40vh]" />
-          <div className="h-0.5 w-[90vw] max-w-6xl mx-auto bg-[var(--theme-color)]" />
+          <div className="h-[40svh]" />
+          <div className="h-0.5 w-[90svw] max-w-6xl mx-auto bg-[var(--theme-color)]" />
         </div>
       </section>
     </>

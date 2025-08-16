@@ -116,7 +116,7 @@ export default function Section() {
               loop
               muted
               playsInline
-              className="background-video max-w-full w-[30vw]  mr-auto top-[30vh] left-[22vw] z-10"
+              className="background-video max-w-full w-[30svw]  mr-auto top-[30svh] left-[22svw] z-10"
               src={videonamma}
               style={{
                 position: "relative",
