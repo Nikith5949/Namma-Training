@@ -44,15 +44,24 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" className={`${SuissenIntl.variable}`}>
         <body className="overflow-x-hidden">
-          <style jsx global>{`
+          {/* <style jsx global>{`
             :root {
               --section1bgimg: url(${section1bgimg});
             }
-          `}</style>
+          `}</style> */}
+
           <NavWithDialogue />
 
           {/* ✅ Background stays outside smoother */}
-          <div id="global-fixed-bg" />
+          <div
+            id="global-fixed-bg"
+            style={{
+              background: `url(${section1bgimg}) no-repeat center center`,
+              backgroundSize: "cover",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
 
           <div id="smooth-wrapper">
             <div id="smooth-content" key={pathname}>
