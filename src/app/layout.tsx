@@ -1,12 +1,16 @@
-// app/layout.tsx
 "use client";
+
 import localFont from "next/font/local";
 import "./globals.css";
-// import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import NavWithDialogue from "../components/NavWithDialogue";
-// import { CustomTransition } from "@/components/PageTransition2";
 import { ViewTransitions } from "next-view-transitions";
+import { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollSmoother, ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
 const SuissenIntl = localFont({
   src: "../../public/fonts/SuisseIntl-Regular.woff2",
   weight: "100 900",
@@ -21,16 +25,33 @@ export default function RootLayout({
 }) {
   const pathname = usePathname();
 
+  useEffect(() => {
+    if (ScrollSmoother.get()) {
+      ScrollSmoother.get()?.kill();
+    }
+
+    ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 3,
+      effects: true,
+    });
+  }, [pathname]);
+
   return (
     <ViewTransitions>
       <html lang="en" className={`${SuissenIntl.variable}`}>
         <body className="overflow-x-hidden">
           <NavWithDialogue />
 
-          {/* AnimatePresence must have the motion component as direct keyed child */}
-          {/* <AnimatePresence mode="wait" initial={false}> */}
-          <div key={pathname}>{children}</div>
-          {/* </AnimatePresence> */}
+          {/* ✅ Background stays outside smoother */}
+          <div id="global-fixed-bg" />
+
+          <div id="smooth-wrapper">
+            <div id="smooth-content" key={pathname}>
+              {children}
+            </div>
+          </div>
         </body>
       </html>
     </ViewTransitions>

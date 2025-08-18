@@ -1,3 +1,4 @@
+"use client";
 import AllSections from "@/components/AllSections";
 
 export default function Home() {
