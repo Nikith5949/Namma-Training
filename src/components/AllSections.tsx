@@ -9,6 +9,7 @@ import Section5 from "@/sections/Section5";
 import SectionMobile from "@/sections/SectionMobile";
 import NammaSection from "@/sections/NammaSection";
 import { section1bgimg } from "./all_assets";
+import MobileSection1 from "@/sections/MobileSection1";
 export default function AllSections() {
   return (
     <>
@@ -25,7 +26,7 @@ export default function AllSections() {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/70 -z-0"></div>
 
-          <Section />
+          <MobileSection1 />
           <div className="h-[20vh] sm:h-[20vh]" />
         </div>
         <Section2 />
