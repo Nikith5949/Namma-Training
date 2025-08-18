@@ -8,7 +8,7 @@ import Section4 from "@/sections/Section4";
 import Section5 from "@/sections/Section5";
 import SectionMobile from "@/sections/SectionMobile";
 import NammaSection from "@/sections/NammaSection";
-
+import { section1bgimg } from "./all_assets";
 export default function AllSections() {
   return (
     <>
@@ -17,7 +17,7 @@ export default function AllSections() {
         <div
           className="md:hidden relative w-full min-h-screen"
           style={{
-            background: `url(/fonts/section1bgimg.jpg) no-repeat center center`,
+            background: `url(${section1bgimg}) no-repeat center center`,
             backgroundSize: "cover",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",

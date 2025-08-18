@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollSmoother, ScrollTrigger } from "gsap/all";
 
+import { section1bgimg } from "../components/all_assets";
+
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const SuissenIntl = localFont({
@@ -42,6 +44,11 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" className={`${SuissenIntl.variable}`}>
         <body className="overflow-x-hidden">
+          <style jsx global>{`
+            :root {
+              --section1bgimg: url(${section1bgimg});
+            }
+          `}</style>
           <NavWithDialogue />
 
           {/* ✅ Background stays outside smoother */}
