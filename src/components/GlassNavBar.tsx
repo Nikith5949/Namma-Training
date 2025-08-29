@@ -1,13 +1,14 @@
 "use client";
 import React, { useRef, useState } from "react";
 import "@/styles/GlassNavBar.css";
-import Image from "next/image";
+// import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
-import { navBarLogo } from "@/components/all_assets";
+// import { navBarLogo } from "@/components/all_assets";
 import { useTransitionRouter } from "next-view-transitions";
-
+import StryvLogo from "./SrtyvLogo";
+import { StryvText } from "./SrtyvText";
 /**
  * GlassNavBar - A navigation bar with a frosted glass effect and white elements.
  * Usage: Place <GlassNavBar /> at the top of your layout or page.
@@ -308,16 +309,19 @@ export default function GlassNavBar({
             topOffset !== undefined ? "top 0.3s ease-in-out" : undefined,
         }}
       >
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
           {/* Logo */}
-          <Image
+          {/* <Image
             src={navBarLogo}
             alt="Go Namma Logo"
             height={40}
             width={120}
             priority
             className="w-auto h-10 sm:h-14"
-          />
+          /> */}
+
+          <StryvLogo className="w-[50px] h-[50px]" />
+          <StryvText className="w-[100px] h-[50px]" />
         </div>
 
         {/* Desktop Navigation */}
