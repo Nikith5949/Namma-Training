@@ -14,7 +14,7 @@ export default function AllSections() {
   return (
     <>
       {/* ✅ Mobile Sections */}
-      <div className="md:hidden relative w-full min-h-screen">
+      <div className="mobile md:hidden relative w-full min-h-screen">
         <div
           className="md:hidden relative w-full min-h-screen"
           style={{

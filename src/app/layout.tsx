@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" className={`${SuissenIntl.variable}`}>
-        <body className="overflow-x-hidden">
+        <body>
           <NavWithDialogue />
 
           {/* Background outside smoother */}
