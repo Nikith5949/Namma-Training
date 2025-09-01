@@ -7,7 +7,7 @@ import Section3 from "@/sections/Section3";
 import Section4 from "@/sections/Section4";
 import Section5 from "@/sections/Section5";
 import SectionMobile from "@/sections/SectionMobile";
-import NammaSection from "@/sections/NammaSection";
+// import NammaSection from "@/sections/NammaSection";
 import { section1bgimg } from "./all_assets";
 import MobileSection1 from "@/sections/MobileSection1";
 export default function AllSections() {
@@ -41,7 +41,7 @@ export default function AllSections() {
         <div className="h-[10vh] sm:h-[20vh] md:h-[40vh] lg:h-[40vh]" />
         <Section2 />
         <Section3 />
-        <NammaSection />
+        {/* <NammaSection /> */}
         <Section4 />
         <Section5 />
       </div>

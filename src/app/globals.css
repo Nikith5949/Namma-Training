@@ -227,7 +227,7 @@ body {
 
 html,
 body {
-  overflow-x: hidden; /* prevent horizontal scrolling on small screens */
+  /* overflow-x: hidden; */
   width: 100%;
 }
 

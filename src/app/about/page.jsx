@@ -3,7 +3,7 @@
 import React from "react";
 import { videonamma } from "@/components/all_assets";
 // import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-
+import HorizontalScroll from "@/components/HorizontalScroll";
 function About() {
   // const { isLoaded } = useJsApiLoader({
   //   googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
@@ -15,7 +15,7 @@ function About() {
   // };
 
   return (
-    <div className="bg-[var(--theme-bgcolor)]  w-screen flex-col  items-center justify-center pt-50">
+    <div className="bg-[var(--theme-bgcolor)]  w-screen min-h-screen flex-col  items-center justify-center pt-50">
       <svg viewBox="0 0 520 400" className=" w-full h-[600px]">
         <defs>
           {/* Drop shadow filter */}
@@ -69,37 +69,27 @@ function About() {
           />
         </foreignObject>
       </svg>
-      {/* --- Flex Row Content --- */}
-      {/* --- Flex Row Content --- */}
-      {/* --- Flex Row Content --- */}
-      <div className="flex flex-row items-center justify-center gap-12 mt-12 px-12">
-        {/* Map container */}
-        <div className="rounded-2xl overflow-hidden shadow-lg">
-          <a
-            href="https://www.google.com/maps/dir/?api=1&destination=12.99847575274743,77.71763229703619"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-2xl overflow-hidden shadow-lg block"
-          >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.87544270778!2d77.71763229703619!3d12.99847575274743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU5JzU0LjUiTiA3N8KwNDMnMDMuNSJF!5e0!3m2!1sen!2sin!4v1698843982342!5m2!1sen!2sin"
-              width="300"
-              height="300"
-              style={{ border: 0, pointerEvents: "none" }} // disables iframe interactions
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </a>
+
+      <div className="flex flex-col items-center justify-center text-[var(--theme-color)] pt-50">
+        <h2 className="text-3xl font-bold mb-4">About Us</h2>
+        <p className="text-lg text-center max-w-2xl">
+          We are a team of passionate individuals committed to making a
+          difference in the world through our innovative solutions and
+          unwavering dedication to our clients.
+        </p>
+      </div>
+
+      <HorizontalScroll />
+
+      <div className="h-[300vh] bg-gray-200">
+        {/* Scrollable parent (tall enough to allow scroll) */}
+
+        <div className="sticky top-0 h-screen bg-black text-white flex items-center justify-center">
+          <h1 className="text-4xl font-bold">🚀 I stay sticky!</h1>
         </div>
 
-        {/* Text container */}
-        <div className="flex items-center justify-center max-w-md text-center">
-          <p>
-            cool placeholder cool placeholder cool placeholder cool placeholder
-            cool placeholder cool placeholder cool placeholder cool placeholder
-            cool placeholder cool placeholder cool placeholder cool placeholder
-          </p>
+        <div className="h-[200vh] flex items-center justify-center">
+          <p className="text-xl">Keep scrolling... eventually I unstick.</p>
         </div>
       </div>
     </div>

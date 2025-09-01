@@ -28,31 +28,29 @@ export default function RootLayout({
   const pathname = usePathname();
 
   useEffect(() => {
+    // Kill old instance on route change
     if (ScrollSmoother.get()) {
       ScrollSmoother.get()?.kill();
     }
 
-    ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 3,
-      effects: true,
-    });
+    // ✅ Only enable smooth scroll if NOT on /about
+    if (pathname !== "/about") {
+      ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 3,
+        effects: true,
+      });
+    }
   }, [pathname]);
 
   return (
     <ViewTransitions>
       <html lang="en" className={`${SuissenIntl.variable}`}>
         <body className="overflow-x-hidden">
-          {/* <style jsx global>{`
-            :root {
-              --section1bgimg: url(${section1bgimg});
-            }
-          `}</style> */}
-
           <NavWithDialogue />
 
-          {/* ✅ Background stays outside smoother */}
+          {/* Background outside smoother */}
           <div
             id="global-fixed-bg"
             style={{
@@ -63,11 +61,16 @@ export default function RootLayout({
             }}
           />
 
-          <div id="smooth-wrapper">
-            <div id="smooth-content" key={pathname}>
-              {children}
+          {/* If on /about, render children normally */}
+          {pathname === "/about" ? (
+            <div>{children}</div>
+          ) : (
+            <div id="smooth-wrapper">
+              <div id="smooth-content" key={pathname}>
+                {children}
+              </div>
             </div>
-          </div>
+          )}
         </body>
       </html>
     </ViewTransitions>
