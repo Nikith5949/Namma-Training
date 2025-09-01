@@ -35,7 +35,7 @@ export default function MobileSection1() {
   });
 
   return (
-    <section className="section-container top-0 left-0 w-screen h-screen flex justify-center items-center">
+    <section className="section-container top-0 left-0 w-screen h-screen flex justify-center items-center overflow-x-hidden">
       <div className="section-grid flex justify-center items-center">
         <div className="section-content gap-0 w-full z-10 opacity-0">
           <div className="section-title">
