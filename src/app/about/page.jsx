@@ -4,19 +4,22 @@ import React from "react";
 import { videonamma } from "@/components/all_assets";
 // import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import HorizontalScroll from "@/components/HorizontalScroll";
+import HorizontalMobileScroll from "@/components/HorizontalMobileScroll";
+import ImageContainer from "@/components/ImageContainer";
+import { section1bgimg } from "@/components/all_assets";
+import "@/styles/HorizontalScroll.css";
+// import StryvLogo from "@/components/SrtyvLogo";
+import { StryvLogoMask } from "@/components/SrtyvLogoMask";
+import StryvLogoWithText from "@/components/SrtyvLogoWithText";
+
 function About() {
-  // const { isLoaded } = useJsApiLoader({
-  //   googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-  // });
-
-  // const center = {
-  //   lat: 12.99847575274743,
-  //   lng: 77.71763229703619,
-  // };
-
   return (
-    <div className="bg-[var(--theme-bgcolor)]  w-screen min-h-screen flex-col  items-center justify-center pt-50">
-      <svg viewBox="0 0 520 400" className=" w-full h-[600px]">
+    <div className="bg-[var(--theme-bgcolor)] w-full flex-col   min-h-screen   pt-50 ">
+      <StryvLogoWithText className="block lg:hidden w-full h-[50svh]" />
+      <svg
+        viewBox="0 0 520 400"
+        className="pc hidden lg:block w-full h-[600px]"
+      >
         <defs>
           {/* Drop shadow filter */}
           <filter id="logo-shadow" x="-50%" y="-50%" width="200%" height="200%">
@@ -71,7 +74,7 @@ function About() {
       </svg>
 
       <div className="flex flex-col items-center justify-center text-[var(--theme-color)] pt-50">
-        <h2 className="text-3xl font-bold mb-4">About Us</h2>
+        <h2 className="text-4xl font-bold mb-4">About Us</h2>
         <p className="text-lg text-center max-w-2xl">
           We are a team of passionate individuals committed to making a
           difference in the world through our innovative solutions and
@@ -79,19 +82,21 @@ function About() {
         </p>
       </div>
 
-      <HorizontalScroll />
+      {/* Our Team Heading */}
+      <div className="flex flex-col items-center justify-center text-[var(--theme-color)] pt-20">
+        <h2 className="text-4xl font-bold ">Our Team</h2>
+      </div>
 
-      <div className="h-[300vh] bg-gray-200">
-        {/* Scrollable parent (tall enough to allow scroll) */}
+      <div className="pc hidden lg:block relative">
+        <HorizontalScroll />
 
-        <div className="sticky top-0 h-screen bg-black text-white flex items-center justify-center">
-          <h1 className="text-4xl font-bold">🚀 I stay sticky!</h1>
-        </div>
-
-        <div className="h-[200vh] flex items-center justify-center">
+        <div className="h-[100vh] bg-[var(--theme-bgcolor)] flex items-center justify-center">
           <p className="text-xl">Keep scrolling... eventually I unstick.</p>
         </div>
       </div>
+
+      {/* Mobile Scroll */}
+      <HorizontalMobileScroll />
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function CardTall({
 }) {
   return (
     <div
-      className={`w-[40vw] bg-[var(--theme-bgcolor)] overflow-hidden ${className} h-screen flex flex-col`}
+      className={`w-[40vw] relative bg-[var(--theme-bgcolor)] overflow-hidden ${className} h-screen flex flex-col`}
     >
       {/* Image occupies 40% of screen height with top padding and centered */}
       <div className="relative flex-none h-[40%] pt-25 flex items-center justify-center">

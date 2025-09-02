@@ -1,12 +1,21 @@
-.content-container {
-  height: 100vh;
-  position: sticky;
-  top: 0;
+/* .images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 3vw;
+  padding: 0 4rem 0 4rem;
+} */
+.images {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 20vw;
+  padding: 0 4rem;
+  width: max-content;
+  min-width: 100%;
 }
-.carousel {
-  background-color: grey;
-  height: 500vh;
+.imageItem {
+  /* Set a fixed width for each image item */
+  flex: 0 0 400px; /* or whatever width you prefer */
+  /* Alternatively, you can use: */
+  /* width: 300px;
+     min-width: 300px; */
 }
