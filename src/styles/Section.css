@@ -93,6 +93,9 @@
 
 /* Mobile-only adjustments: center content and prevent horizontal overflow */
 @media (max-width: 768px) {
+  .mob {
+    overflow-y: hidden;
+  }
   .section-containerbg {
     background-image: linear-gradient(
         to bottom,

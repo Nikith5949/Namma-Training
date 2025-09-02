@@ -14,7 +14,7 @@ import StryvLogoWithText from "@/components/SrtyvLogoWithText";
 
 function About() {
   return (
-    <div className="bg-[var(--theme-bgcolor)] w-full flex-col   min-h-screen   pt-50 ">
+    <div className="mob bg-[var(--theme-bgcolor)] w-full flex-col  min-h-screen   pt-50 ">
       <StryvLogoWithText className="block lg:hidden w-full h-[50svh]" />
       <svg
         viewBox="0 0 520 400"
