@@ -20,28 +20,51 @@ export default function NavWithDialogue() {
       // Track if user has scrolled from the very top
       setIsScrolled(currentScrollY > 40);
 
-      // On mobile, be more sensitive to scroll direction changes
+      // Check if we're on mobile/small device
       const isMobile = window.innerWidth <= 768;
       const scrollThreshold = isMobile ? 5 : 10;
 
-      if (
-        currentScrollY > lastScrollY.current &&
-        currentScrollY > scrollThreshold
-      ) {
-        // Scrolling down
-        setShowNav(false);
-        if (isDialogueOpen) {
-          setShowDialogue(false);
-        }
-      } else if (currentScrollY < lastScrollY.current) {
-        // Scrolling up
+      if (isMobile) {
+        // On mobile, always keep the navbar visible but handle dialogue
         setShowNav(true);
-        if (isDialogueOpen) {
-          setShowDialogue(true);
+
+        if (
+          currentScrollY > lastScrollY.current &&
+          currentScrollY > scrollThreshold
+        ) {
+          // Scrolling down - hide dialogue
+          if (isDialogueOpen) {
+            setShowDialogue(false);
+          }
+        } else if (currentScrollY < lastScrollY.current) {
+          // Scrolling up - show dialogue
+          if (isDialogueOpen) {
+            setShowDialogue(true);
+          }
+        }
+      } else {
+        // Desktop behavior - original logic
+        if (
+          currentScrollY > lastScrollY.current &&
+          currentScrollY > scrollThreshold
+        ) {
+          // Scrolling down
+          setShowNav(false);
+          if (isDialogueOpen) {
+            setShowDialogue(false);
+          }
+        } else if (currentScrollY < lastScrollY.current) {
+          // Scrolling up
+          setShowNav(true);
+          if (isDialogueOpen) {
+            setShowDialogue(true);
+          }
         }
       }
+
       lastScrollY.current = currentScrollY;
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
