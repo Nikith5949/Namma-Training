@@ -3,8 +3,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { usePathname } from "next/navigation";
-// import NavWithDialogue from "../components/NavWithDialogue";
-import OptimizedNavWithDialogue from "@/components/OptimizedNavWithDialogue";
+import NavWithDialogue from "../components/NavWithDialogue";
+// import OptimizedNavWithDialogue from "@/components/OptimizedNavWithDialogue";
 import { ViewTransitions } from "next-view-transitions";
 import { useEffect } from "react";
 import { gsap } from "gsap";
@@ -49,7 +49,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" className={`${SuissenIntl.variable}`}>
         <body>
-          <OptimizedNavWithDialogue />
+          <NavWithDialogue />
 
           {/* Background outside smoother */}
           <div
