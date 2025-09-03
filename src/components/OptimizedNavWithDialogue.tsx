@@ -8,11 +8,15 @@ import Link from "next/link";
 import { useTransitionRouter } from "next-view-transitions";
 import "@/styles/GlassNavBar.css";
 // Throttle utility for better performance
-const useThrottle = (callback: Function, delay: number) => {
+// Throttle utility for better performance
+function useThrottle<T extends (...args: unknown[]) => void>(
+  callback: T,
+  delay: number
+): (...args: Parameters<T>) => void {
   const lastRun = useRef(Date.now());
 
   return useCallback(
-    (...args: any[]) => {
+    (...args: Parameters<T>) => {
       if (Date.now() - lastRun.current >= delay) {
         callback(...args);
         lastRun.current = Date.now();
@@ -20,20 +24,25 @@ const useThrottle = (callback: Function, delay: number) => {
     },
     [callback, delay]
   );
-};
+}
 
 // Debounce utility for scroll end detection
-const useDebounce = (callback: Function, delay: number) => {
-  const timeoutRef = useRef<NodeJS.Timeout>();
+function useDebounce<T extends (...args: unknown[]) => void>(
+  callback: T,
+  delay: number
+): (...args: Parameters<T>) => void {
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   return useCallback(
-    (...args: any[]) => {
-      clearTimeout(timeoutRef.current);
+    (...args: Parameters<T>) => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current);
+      }
       timeoutRef.current = setTimeout(() => callback(...args), delay);
     },
     [callback, delay]
   );
-};
+}
 
 // Mock Dialogue2 Component
 interface Dialogue2Props {
@@ -278,14 +287,6 @@ const GlassNavBar = ({
       });
     }
   }, [isMobileMenuOpen]);
-
-  // Handle navigation item clicks (mock implementation)
-  const handleNavClick = (path: string) => {
-    console.log(`Navigating to: ${path}`);
-    closeMobileMenu();
-    // In a real app, you'd use your router here
-    // router.push(path, { onTransitionReady: slideInOut });
-  };
 
   return (
     <>
