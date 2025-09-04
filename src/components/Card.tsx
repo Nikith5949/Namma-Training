@@ -151,13 +151,15 @@ const Card: React.FC<CardProps> = ({
             backfaceVisibility: "hidden",
           }}
         >
-          <div className={`${imageHeight} relative w-full overflow-hidden`}>
+          <div
+            className={`${imageHeight} relative w-full bg-[linear-gradient(rgba(0,0,0,0,1), rgba(0,0,0,0))] overflow-hidden`}
+          >
             <Image
               src={imageUrl}
               alt={title?.toUpperCase()}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover"
+              className="object-cover gradi"
               priority={priority}
               placeholder="blur"
               blurDataURL="data:image/svg+xml;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="

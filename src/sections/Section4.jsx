@@ -25,12 +25,15 @@ export default function Section4() {
               </h2>
               <div className=" py-4 px-6 max-w-md">
                 <p className="text-lg leading-relaxed text-justify">
-                  At NAMMA Training, we believe that everybody is an athlete.
-                  Our training facilities are vibrant communities dedicated to
-                  supporting your athletic lifestyle and enhancing your
-                  performance. Whether you're a beginner venturing into training
-                  or an experienced athlete looking to hone your skills, we have
-                  something for everyone.
+                  STRYV FIT isn’t just a gym — it’s a movement. Here, fitness
+                  meets purpose, and every session is designed to push you
+                  beyond the ordinary. From MMA to strength & conditioning, and
+                  cutting-edge equipment in a raw, industrial space, we build
+                  more than strength.
+                  <br />
+                  We build a community that lifts, stryvs, and thrives together.
+                  <br />
+                  Ready to redefine your limits? Welcome to STRYV FIT.
                 </p>
               </div>
             </div>
@@ -42,11 +45,12 @@ export default function Section4() {
               </h2>
               <div className=" py-4 px-6 max-w-md">
                 <p className="text-lg leading-relaxed text-justify">
-                  Our Coaches are committed to providing personalized guidance,
-                  ensuring you progress at your own pace. Whether you're a kid
-                  aged 4 to 17, a senior working to improve strength, or anyone
-                  in between, we moderate our programmes to meet your unique
-                  needs. You will never be more healthier!
+                  At STRYV FIT, we’re redefining what it means to train. No
+                  gimmicks, no fads — just serious training in a community built
+                  on grit, drive, and discipline. Whether you’re chasing your
+                  first rep or your next personal record, this is where your
+                  journey transforms. We’re not here to blend in. We’re here to
+                  help you Lift. Stryv. Thrive.
                 </p>
               </div>
             </div>

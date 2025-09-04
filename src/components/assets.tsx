@@ -1,7 +1,7 @@
 export const cards1 = [
   {
     somekey: "card-1",
-    imageUrl: "./assets/gym1.jpg",
+    imageUrl: "./assets/gym_equip.jpeg",
     height: "h-120",
     width: "w-190",
     imageHeight: "h-150",
@@ -22,7 +22,7 @@ export const cards1 = [
   },
   {
     somekey: "card-2",
-    imageUrl: "./assets/gym2.jpg",
+    imageUrl: "./assets/personel_train.jpeg",
     height: "h-102",
     width: "w-160",
     imageHeight: "h-80",
@@ -43,7 +43,7 @@ export const cards1 = [
   },
   {
     somekey: "card-3",
-    imageUrl: "./assets/gym3.jpg",
+    imageUrl: "./assets/grp_class.jpeg",
     height: "h-84",
     width: "w-104",
     imageHeight: "h-70",
@@ -63,7 +63,7 @@ export const cards1 = [
   },
   {
     somekey: "card-4",
-    imageUrl: "./assets/gym1.jpg",
+    imageUrl: "./assets/mma.jpeg",
     height: "h-114",
     width: "w-180",
     imageHeight: "h-110",
