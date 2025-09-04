@@ -16,79 +16,39 @@ export default function NavWithDialogue() {
   React.useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Track if user has scrolled from the very top
       setIsScrolled(currentScrollY > 40);
 
-      // Check if we're on mobile/small device
-      const isMobile = window.innerWidth <= 768;
-      const scrollThreshold = isMobile ? 5 : 10;
-
-      if (isMobile) {
-        // On mobile, always keep the navbar visible but handle dialogue
-        setShowNav(true);
-
-        if (
-          currentScrollY > lastScrollY.current &&
-          currentScrollY > scrollThreshold
-        ) {
-          // Scrolling down - hide dialogue
-          if (isDialogueOpen) {
-            setShowDialogue(false);
-          }
-        } else if (currentScrollY < lastScrollY.current) {
-          // Scrolling up - show dialogue
-          if (isDialogueOpen) {
-            setShowDialogue(true);
-          }
-        }
+      // Ensure dialogue only appears at the very top
+      if (currentScrollY === 0 && isDialogueOpen) {
+        setShowDialogue(true);
       } else {
-        // Desktop behavior - original logic
-        if (
-          currentScrollY > lastScrollY.current &&
-          currentScrollY > scrollThreshold
-        ) {
-          // Scrolling down
-          setShowNav(false);
-          if (isDialogueOpen) {
-            setShowDialogue(false);
-          }
-        } else if (currentScrollY < lastScrollY.current) {
-          // Scrolling up
-          setShowNav(true);
-          if (isDialogueOpen) {
-            setShowDialogue(true);
-          }
-        }
+        setShowDialogue(false);
+      }
+
+      // Show/hide navbar based on scroll direction
+      if (currentScrollY > lastScrollY.current) {
+        setShowNav(false); // scrolling down
+      } else {
+        setShowNav(true); // scrolling up
       }
 
       lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [isDialogueOpen]);
 
-  // GSAP animations using useGSAP hook
-  useGSAP(
-    () => {
-      // Any GSAP animations can be added here if needed
-      // The useGSAP hook automatically handles cleanup on unmount
-    },
-    {
-      dependencies: [showDialogue, showNav, isDialogueOpen],
-      scope: navWrapperRef,
-    }
-  );
+  // GSAP hook (optional animations)
+  useGSAP(() => {}, {
+    dependencies: [showDialogue, showNav, isDialogueOpen],
+    scope: navWrapperRef,
+  });
 
   const handleDialogueHeightChange = (height: number) => {
     setDialogueHeight(height);
-    // console.log("Dialogue height changed:", height);
   };
 
-  // Calculate the top position for the navbar
   const navTopOffset = isDialogueOpen && showDialogue ? dialogueHeight : 0;
 
   return (
@@ -99,7 +59,6 @@ export default function NavWithDialogue() {
         onClose={() => setIsDialogueOpen(false)}
         onHeightChange={handleDialogueHeightChange}
       />
-
       <GlassNavBar
         topOffset={navTopOffset}
         showNav={showNav}
