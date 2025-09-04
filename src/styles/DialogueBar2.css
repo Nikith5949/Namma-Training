@@ -7,17 +7,17 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 0.3rem 0;
   font-size: 1rem;
-  border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(229, 110, 110, 0.2);
   /* Initial state for GSAP animations */
   opacity: 0;
 }
 
 .dialogue2-text {
-  color: rgba(98, 98, 98, 0.912);
+  color: rgba(37, 37, 37, 0.751);
   font-weight: 400;
   font-size: 15px;
   letter-spacing: 0.025em;
-  text-shadow: 0 1px 3px rgba(244, 243, 243, 0.559);
+  text-shadow: 0 1px 3px rgb(255, 255, 255);
   line-height: 1.4;
   /* Initial state for GSAP animations */
   opacity: 0;

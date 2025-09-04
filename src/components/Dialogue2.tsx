@@ -15,12 +15,9 @@ interface Dialogue2Props {
 }
 
 const offers = [
-  "🎉 Latest Offer: Get 20% off on your first order! Use code: NAMMA20",
-  "🚀 Free Delivery: Order above ₹500 and get free delivery to your doorstep!",
-  "⭐ New Menu: Try our authentic South Indian specialties - Now Available!",
-  "🔥 Weekend Special: Buy 2 Get 1 Free on all combo meals this weekend!",
-  "💎 Premium Members: Enjoy exclusive 30% discount on weekend orders!",
-  "🌟 Chef's Special: Limited time authentic Hyderabadi biryani available!",
+  "🌅 Early Bird Special: Kickstart your day with Namma Strength & MMA classes! Use code: NAMMA10",
+  "💪 Independent Workouts: Enjoy early bird open gym access at Stryv Fit! Use code: STRYV1",
+  "🏋️‍♂️ Universal Access: Train at both Namma and Stryv techniques at STRYV FIT! Use code: ALLFIT",
 ];
 
 export default function Dialogue2({
