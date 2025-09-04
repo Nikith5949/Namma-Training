@@ -88,18 +88,10 @@ export default function GlassNavBar({
   const toggleMobileMenu = () => {
     const newState = !isMobileMenuOpen;
     setIsMobileMenuOpen(newState);
-
-    // Prevent body scroll when mobile menu is open
-    if (newState) {
-      document.body.classList.add("mobile-menu-open");
-    } else {
-      document.body.classList.remove("mobile-menu-open");
-    }
   };
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
-    document.body.classList.remove("mobile-menu-open");
   };
 
   // Close mobile menu when clicking outside with animation
@@ -162,7 +154,6 @@ export default function GlassNavBar({
     const handleResize = () => {
       if (window.innerWidth > 768 && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
-        document.body.classList.remove("mobile-menu-open");
       }
     };
 
