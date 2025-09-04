@@ -24,6 +24,9 @@ export default function NavWithDialogue() {
       const isMobile = window.innerWidth <= 768;
       const scrollThreshold = isMobile ? 5 : 10;
 
+      // Define what we consider "top of screen" - adjust this value as needed
+      const topThreshold = 100; // Show dialogue only when within 100px of top
+
       if (isMobile) {
         // On mobile, always keep the navbar visible but handle dialogue
         setShowNav(true);
@@ -37,13 +40,13 @@ export default function NavWithDialogue() {
             setShowDialogue(false);
           }
         } else if (currentScrollY < lastScrollY.current) {
-          // Scrolling up - show dialogue
-          if (isDialogueOpen) {
+          // Scrolling up - only show dialogue if we're near the top
+          if (isDialogueOpen && currentScrollY <= topThreshold) {
             setShowDialogue(true);
           }
         }
       } else {
-        // Desktop behavior - original logic
+        // Desktop behavior
         if (
           currentScrollY > lastScrollY.current &&
           currentScrollY > scrollThreshold
@@ -54,9 +57,9 @@ export default function NavWithDialogue() {
             setShowDialogue(false);
           }
         } else if (currentScrollY < lastScrollY.current) {
-          // Scrolling up
+          // Scrolling up - only show dialogue if we're near the top
           setShowNav(true);
-          if (isDialogueOpen) {
+          if (isDialogueOpen && currentScrollY <= topThreshold) {
             setShowDialogue(true);
           }
         }
