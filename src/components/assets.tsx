@@ -6,7 +6,8 @@ export const cards1 = [
     width: "w-190",
     imageHeight: "h-150",
     title: "Premium Gym Equipment",
-    description: "State-of-the-art machines for your workout routine",
+    description:
+      "Our gym features premium, state-of-the-art equipment designed to cater to every fitness enthusiast's needs. From advanced cardio machines to strength training apparatus, each piece of equipment is crafted to provide optimal performance, safety, and comfort. Whether you are a beginner or an experienced athlete, our high-quality machines ensure an effective and enjoyable workout experience.",
     parallaxSpeed: 3,
     direction: "y" as const,
     zIndex: 50,
@@ -26,7 +27,8 @@ export const cards1 = [
     width: "w-160",
     imageHeight: "h-80",
     title: "Personal Training",
-    description: "Certified trainers for customized workout plans",
+    description:
+      "Our certified personal trainers provide tailored workout plans to help you achieve your fitness goals efficiently and safely. Each session is customized to your experience level, physical condition, and objectives, ensuring maximum results and motivation. With expert guidance, you can improve your technique, stay accountable, and unlock your full potential in a supportive environment.",
     parallaxSpeed: 0.8,
     direction: "y" as const,
     zIndex: 45,
@@ -42,11 +44,12 @@ export const cards1 = [
   {
     somekey: "card-3",
     imageUrl: "./assets/gym3.jpg",
-    height: "h-64",
-    width: "w-80",
+    height: "h-84",
+    width: "w-104",
     imageHeight: "h-70",
     title: "Group Classes",
-    description: "Join our energizing group fitness sessions",
+    description:
+      "Join our dynamic group classes to experience the energy and motivation of working out with others. From high-intensity training sessions to calming yoga classes, our diverse offerings cater to all fitness levels. Engaging in group activities not only helps improve physical fitness but also fosters social connections and a sense of community, making your fitness journey enjoyable and rewarding.",
     parallaxSpeed: 0.7,
     direction: "y" as const,
     zIndex: 52,
@@ -65,7 +68,8 @@ export const cards1 = [
     width: "w-180",
     imageHeight: "h-110",
     title: "Nutrition Plans",
-    description: "Customized meal plans for your fitness goals",
+    description:
+      "Our nutrition plans are designed to complement your fitness routine and help you achieve your health goals effectively. We provide personalized meal strategies based on your dietary needs, preferences, and fitness objectives. By combining proper nutrition with your workouts, you can enhance performance, boost energy levels, and see sustainable results while maintaining a balanced and healthy lifestyle.",
     parallaxSpeed: 3,
     direction: "y" as const,
     zIndex: 48,

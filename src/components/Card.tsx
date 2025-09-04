@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -32,7 +32,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Card: React.FC<CardProps> = ({
   imageUrl,
   title,
-  // description,
+  description,
   width = "w-52",
   imageHeight = "h-32",
   height = "h-auto",
@@ -52,6 +52,7 @@ const Card: React.FC<CardProps> = ({
   bottom,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [flipped, setFlipped] = useState(false);
 
   useGSAP(
     () => {
@@ -60,23 +61,17 @@ const Card: React.FC<CardProps> = ({
       const distance = 150 * parallaxSpeed;
 
       if (direction === "x") {
-        // Horizontal parallax
         gsap.fromTo(
           cardRef.current,
-          {
-            x: distance,
-            // scale: enableScale ? scaleStart : 1,
-          },
+          { x: distance },
           {
             x: -distance,
-            // scale: enableScale ? scaleEnd : 1,
             ease: "none",
             scrollTrigger: {
               trigger: cardRef.current,
               start: "top bottom",
               end: "bottom top",
               scrub: 1,
-              markers: false,
               invalidateOnRefresh: true,
               onUpdate: enableRotation
                 ? (self) => {
@@ -88,23 +83,17 @@ const Card: React.FC<CardProps> = ({
           }
         );
       } else {
-        // Vertical parallax
         gsap.fromTo(
           cardRef.current,
-          {
-            y: distance,
-            // scale: enableScale ? scaleStart : 0.9,
-          },
+          { y: distance },
           {
             y: -distance * 0.5,
-            // scale: enableScale ? scaleEnd : 1,
             ease: "none",
             scrollTrigger: {
               trigger: cardRef.current,
               start: "top 100%",
               end: "bottom 0%",
               scrub: 3,
-              markers: false,
               invalidateOnRefresh: true,
               onUpdate: enableRotation
                 ? (self) => {
@@ -131,7 +120,6 @@ const Card: React.FC<CardProps> = ({
     }
   );
 
-  // Build position styles
   const positionStyles: React.CSSProperties = {
     zIndex,
     position,
@@ -139,37 +127,64 @@ const Card: React.FC<CardProps> = ({
     ...(left && { left }),
     ...(right && { right }),
     ...(bottom && { bottom }),
+    perspective: 1000, // Needed for 3D flip
   };
 
   return (
     <div
       ref={cardRef}
-      className={`${width} ${height} bg-[var(--theme-bgcolor)] flex flex-col min-h-[200px] overflow-hidden`}
+      className={`${width} ${height} cursor-pointer`}
       style={positionStyles}
+      onClick={() => setFlipped(!flipped)}
     >
       <div
-        className={`${imageHeight} relative w-full overflow-hidden bg-[var(--theme-bgcolor)]`}
+        className={`relative w-full h-full transition-transform duration-700 transform ${
+          flipped ? "rotate-y-180" : ""
+        }`}
+        style={{ transformStyle: "preserve-3d" }}
       >
-        <Image
-          src={imageUrl}
-          alt={title && title.toUpperCase()}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover"
-          priority={priority}
-          placeholder="blur"
-          blurDataURL="data:image/svg+xml;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
-        />
+        {/* Front */}
+        <div
+          className="absolute w-full h-full backface-hidden bg-[var(--theme-bgcolor)] flex flex-col min-h-[200px] overflow-hidden"
+          style={{
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden",
+          }}
+        >
+          <div className={`${imageHeight} relative w-full overflow-hidden`}>
+            <Image
+              src={imageUrl}
+              alt={title?.toUpperCase()}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
+              priority={priority}
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+            />
+          </div>
+          <div className="p-4 flex flex-col">
+            <h3 className="text-[var(--theme-color)] font-bold mb-2 line-clamp-2">
+              {title?.toUpperCase()}
+            </h3>
+          </div>
+          <div className="linediv h-0.5 w-full bg-[var(--theme-color)]"></div>
+        </div>
+
+        {/* Back */}
+        <div
+          className="absolute w-full h-full rotate-y-180 backface-hidden bg-[rgba(105,8,16,0.81)] p-4 flex flex-col justify-center items-center text-center"
+          style={{
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden",
+          }}
+        >
+          <h3 className="text-[rgba(248,250,250,0.99)] font-bold mb-2">
+            {title?.toUpperCase()}
+          </h3>
+          <p className="text-[rgba(248,250,250,0.99)]">{description}</p>
+        </div>
       </div>
-      <div className="p-4  flex flex-col">
-        <h3 className="text-[var(--theme-color)] font-bold mb-2 line-clamp-2">
-          {title && title.toUpperCase()}
-        </h3>
-        {/* <p className="text-[rgba(10,218,218,0.99)] line-clamp-3">
-          {description && description.toUpperCase()}
-        </p> */}
-      </div>
-      <div className="linediv h-0.5 w-full bg-[var(--theme-color)]"></div>
     </div>
   );
 };
