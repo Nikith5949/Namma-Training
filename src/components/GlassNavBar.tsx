@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useTransitionRouter } from "next-view-transitions";
 import StryvLogo from "./SrtyvLogo";
 import { StryvText } from "./SrtyvText";
+
 /**
  * GlassNavBar - A navigation bar with a frosted glass effect and white elements.
  * Usage: Place <GlassNavBar /> at the top of your layout or page.
@@ -67,6 +68,22 @@ export default function GlassNavBar({
       }
     );
   }
+
+  // Helper function to handle navigation with scroll reset
+  const handleNavigation = (href: string, e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+
+    // Close mobile menu first
+    closeMobileMenu();
+
+    // Navigate with transition
+    router.push(href, {
+      onTransitionReady: () => {
+        slideInOut(); // keep your animation
+        window.scrollTo({ top: 0, behavior: "instant" }); // scroll new page to top
+      },
+    });
+  };
 
   const toggleMobileMenu = () => {
     const newState = !isMobileMenuOpen;
@@ -327,38 +344,28 @@ export default function GlassNavBar({
         {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-8">
           <li className="text-white font-medium hover:underline cursor-pointer">
-            <Link href="/">Home</Link>
+            <Link
+              href="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
+            >
+              Home
+            </Link>
           </li>
           <li className="text-white font-medium hover:underline cursor-pointer">
             <a
               href="/Stryv-pass"
-              onClick={(e) => {
-                e.preventDefault();
-                router.push("/Stryv-pass", { onTransitionReady: slideInOut });
-              }}
+              onClick={(e) => handleNavigation("/Stryv-pass", e)}
             >
               Stryv-Pass
             </a>
           </li>
           <li className="text-white font-medium hover:underline cursor-pointer">
-            <a
-              href="/about"
-              onClick={(e) => {
-                e.preventDefault();
-                router.push("/about", { onTransitionReady: slideInOut });
-              }}
-            >
+            <a href="/about" onClick={(e) => handleNavigation("/about", e)}>
               About
             </a>
           </li>
           <li className="text-white font-medium hover:underline cursor-pointer">
-            <a
-              href="/contact"
-              onClick={(e) => {
-                e.preventDefault();
-                router.push("/contact", { onTransitionReady: slideInOut });
-              }}
-            >
+            <a href="/contact" onClick={(e) => handleNavigation("/contact", e)}>
               Contact
             </a>
           </li>
@@ -414,43 +421,29 @@ export default function GlassNavBar({
               : "bg-black/95 border-b border-white/20"
           } shadow-lg pt-20 pb-6`}
         >
-          <ul className="flex flex-col items-center space-y-6 px-8">
-            <li className="mobile-menu-item text-white font-medium text-lg hover:text-[var(--theme-color)] transition-colors duration-200">
-              <Link href="/" onClick={closeMobileMenu}>
+          <ul className="flex flex-col text-white items-center space-y-6 px-8">
+            <li className="mobile-menu-item">
+              <Link href="/" onClick={(e) => handleNavigation("/", e)}>
                 Home
               </Link>
             </li>
-            <li className="mobile-menu-item text-white font-medium text-lg hover:text-[var(--theme-color)] transition-colors duration-200">
-              <a
-                href="/about"
-                onClick={(e) => {
-                  e.preventDefault();
-                  closeMobileMenu();
-                  router.push("/about", { onTransitionReady: slideInOut });
-                }}
-              >
+            <li className="mobile-menu-item">
+              <a href="/about" onClick={(e) => handleNavigation("/about", e)}>
                 About
               </a>
             </li>
-            <li className="mobile-menu-item text-white font-medium text-lg hover:text-[var(--theme-color)] transition-colors duration-200">
+            <li className="mobile-menu-item">
               <a
                 href="/contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  closeMobileMenu();
-                  router.push("/contact", { onTransitionReady: slideInOut });
-                }}
+                onClick={(e) => handleNavigation("/contact", e)}
               >
                 Contact
               </a>
             </li>
-            <li className="mobile-menu-item text-white font-medium text-lg hover:text-[var(--theme-color)] transition-colors duration-200">
+            <li className="mobile-menu-item">
               <a
                 href="/Stryv-pass"
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push("/Stryv-pass", { onTransitionReady: slideInOut });
-                }}
+                onClick={(e) => handleNavigation("/Stryv-pass", e)}
               >
                 Stryv-Pass
               </a>
