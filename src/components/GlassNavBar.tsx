@@ -331,6 +331,17 @@ export default function GlassNavBar({
           </li>
           <li className="text-white font-medium hover:underline cursor-pointer">
             <a
+              href="/Stryv-pass"
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/Stryv-pass", { onTransitionReady: slideInOut });
+              }}
+            >
+              Stryv-Pass
+            </a>
+          </li>
+          <li className="text-white font-medium hover:underline cursor-pointer">
+            <a
               href="/about"
               onClick={(e) => {
                 e.preventDefault();
