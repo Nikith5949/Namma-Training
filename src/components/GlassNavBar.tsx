@@ -444,6 +444,17 @@ export default function GlassNavBar({
                 Contact
               </a>
             </li>
+            <li className="mobile-menu-item text-white font-medium text-lg hover:text-[var(--theme-color)] transition-colors duration-200">
+              <a
+                href="/Stryv-pass"
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/Stryv-pass", { onTransitionReady: slideInOut });
+                }}
+              >
+                Stryv-Pass
+              </a>
+            </li>
           </ul>
         </div>
       </div>
