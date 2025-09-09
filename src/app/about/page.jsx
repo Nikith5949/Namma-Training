@@ -13,6 +13,8 @@ import { StryvLogoMask } from "@/components/SrtyvLogoMask";
 import StryvLogoWithText from "@/components/SrtyvLogoWithText";
 
 function About() {
+  const phoneNumber = "+919480009889";
+  const whatsappLink = `https://wa.me/${phoneNumber.replace("+", "")}`;
   return (
     <div className="mob bg-[var(--theme-bgcolor)] w-full flex-col  min-h-screen   pt-50 ">
       <StryvLogoWithText className="block lg:hidden w-full h-[50svh]" />
@@ -98,9 +100,11 @@ function About() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-12">
               {/* Instagram */}
               <a
-                href="#"
+                href="https://www.instagram.com/stryv.fit.ind?igsh=MTYyZWszNWNndDN6bg=="
                 className="group flex flex-col items-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
                 aria-label="Follow us on Instagram"
+                target="_blank" // ✅ opens in a new tab
+                rel="noopener noreferrer"
               >
                 <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-400 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-300">
                   <svg
@@ -157,7 +161,9 @@ function About() {
               </a>
               {/* WhatsApp */}
               <a
-                href="#"
+                href={whatsappLink}
+                target="_blank" // ✅ opens in a new tab
+                rel="noopener noreferrer"
                 className="group flex flex-col items-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
                 aria-label="Contact us on WhatsApp"
               >
@@ -191,9 +197,11 @@ function About() {
           <div className="flex items-center justify-center gap-6 sm:gap-8">
             {/* Instagram */}
             <a
-              href="#"
+              href="https://www.instagram.com/stryv.fit.ind?igsh=MTYyZWszNWNndDN6bg=="
               className="group flex flex-col items-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
               aria-label="Follow us on Instagram"
+              target="_blank" // ✅ opens in a new tab
+              rel="noopener noreferrer"
             >
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-400 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <svg
@@ -249,9 +257,11 @@ function About() {
               </span>
             </a>
             <a
-              href="#"
+              href={whatsappLink}
               className="group flex flex-col items-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
               aria-label="Contact us on WhatsApp"
+              target="_blank" // ✅ opens in a new tab
+              rel="noopener noreferrer"
             >
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <svg

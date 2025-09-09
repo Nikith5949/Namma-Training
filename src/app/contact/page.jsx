@@ -204,7 +204,7 @@ export default function Contact() {
                     📞 Quick Contact
                   </Typography>
                   <Typography sx={{ color: "var(--theme-color)", mb: 1 }}>
-                    <strong>Phone:</strong> 9000000000
+                    <strong>Phone:</strong> +919480009889
                   </Typography>
                   <Typography sx={{ color: "var(--theme-color)", mb: 1 }}>
                     <strong>Email:</strong> fitnessmandnquest@gmail.com

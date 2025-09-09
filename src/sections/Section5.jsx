@@ -7,6 +7,9 @@ import { FaWhatsapp } from "react-icons/fa"; // FontAwesome WhatsApp icon
 export default function Section5() {
   const scrollRef = useRef(null);
 
+  const phoneNumber = "+919480009889";
+  const whatsappLink = `https://wa.me/${phoneNumber.replace("+", "")}`;
+
   const welcomeLanguages = [
     { text: "WELCOME", lang: "English" },
     { text: "स्वागत हे", lang: "Hindi" },
@@ -54,19 +57,21 @@ export default function Section5() {
 
       <div className="flex flex-col items-center">
         <div className="text-center mb-4">
-          <p className="text-lg">NAMMA@SSCONTENT.COM</p>
-          <p className="text-lg">(+91) 467-9780</p>
+          <p className="text-lg">WWW.STRYV.CO.IN</p>
+          <p className="text-lg">(+91) 94800 09889</p>
         </div>
 
         <div className="text-center mb-6">
           <p className="text-lg">BANGALORE, WHITEFIELD, </p>
-          <p className="text-lg">HOODI, DEVIANUGRAHA 3RD FLOOR</p>
+          <p className="text-lg">
+            SRI DEVIANUGRAHA, 3RD FLOOR, HOODI, ANUP LAYOUT, BANGALORE 560048
+          </p>
         </div>
 
         {/* Social icons */}
         <div className="flex space-x-6 mb-12">
           <a
-            href="https://wa.me/your-number"
+            href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10 text-green-500 hover:text-green-600"
@@ -105,7 +110,7 @@ export default function Section5() {
           </a>
 
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/stryv.fit.ind?igsh=MTYyZWszNWNndDN6bg=="
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10"
