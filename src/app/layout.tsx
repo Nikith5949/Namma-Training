@@ -87,7 +87,8 @@ export default function RootLayout({
              p-4 rounded-full 
              shadow-lg 
              hover:bg-green-500/60 
-             transition"
+             transition
+             z-50"
           >
             <FaWhatsapp size={25} />
           </a>
@@ -102,7 +103,8 @@ export default function RootLayout({
              p-4 rounded-full 
              shadow-lg 
              hover:bg-red-600/70 
-             transition"
+             transition
+             z-100"
           >
             <FaPhone size={25} />
           </a>
