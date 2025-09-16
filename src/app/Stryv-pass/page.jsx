@@ -10,9 +10,9 @@ const plans = [
     ],
     prices: {
       "1 Month": { original: "₹6,600", current: "₹5,100" },
-      "3 Months": { original: "₹13,200", current: "₹10,200" },
-      "6 Months": { original: "₹19,800", current: "₹15,300" },
-      "12 Months": { original: "₹24,200", current: "₹18,700" },
+      "3 Months": { original: "₹13,000", current: "₹10,000" },
+      "6 Months": { original: "₹19,000", current: "₹15,000" },
+      "12 Months": { original: "₹24,000", current: "₹18,000" },
     },
   },
   {
@@ -24,9 +24,9 @@ const plans = [
     ],
     prices: {
       "1 Month": { original: "₹9,200", current: "₹8,000" },
-      "3 Months": { original: "₹17,250", current: "₹15,000" },
-      "6 Months": { original: "₹28,750", current: "₹25,000" },
-      "12 Months": { original: "₹41,400", current: "₹36,000" },
+      "3 Months": { original: "₹17,000", current: "₹15,000" },
+      "6 Months": { original: "₹31,000", current: "₹25,000" },
+      "12 Months": { original: "₹42,000", current: "₹36,000" },
     },
   },
   {
@@ -38,8 +38,8 @@ const plans = [
       "1 PT session in the Gym free",
     ],
     prices: {
-      "6 Months": { original: "₹39,600", current: "₹30,600" },
-      "12 Months": { original: "₹52,800", current: "₹40,800" },
+      "6 Months": { original: "₹39,000", current: "₹30,000" },
+      "12 Months": { original: "₹52,000", current: "₹42,000" },
     },
   },
 ];
