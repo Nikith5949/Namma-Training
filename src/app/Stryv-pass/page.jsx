@@ -23,10 +23,10 @@ const plans = [
       "1 PT session in the Gym free",
     ],
     prices: {
-      "1 Month": { original: "₹8,000", current: "₹6,800" },
-      "3 Months": { original: "₹16,500", current: "₹12,800" },
-      "6 Months": { original: "₹26,400", current: "₹20,400" },
-      "12 Months": { original: "₹39,600", current: "₹30,600" },
+      "1 Month": { original: "₹9,200", current: "₹8,000" },
+      "3 Months": { original: "₹17,250", current: "₹15,000" },
+      "6 Months": { original: "₹28,750", current: "₹25,000" },
+      "12 Months": { original: "₹41,400", current: "₹36,000" },
     },
   },
   {
