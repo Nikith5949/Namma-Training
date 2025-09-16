@@ -6,6 +6,7 @@ import "@/styles/DialogueBar2.css";
 /**
  * Dialogue2 - A GSAP-powered carousel bar above the navbar to show rotating offers.
  * Usage: Place <Dialogue2 /> above <GlassNavBar /> in your layout.
+ * Now clickable and navigates to /Stryv-pass
  */
 interface Dialogue2Props {
   open: boolean;
@@ -157,6 +158,26 @@ export default function Dialogue2({
     }
   );
 
+  // Navigation handler for clicking the dialogue
+  const handleDialogueClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Prevent navigation if clicking the close button
+    if ((e.target as HTMLElement).closest(".dialogue2-close")) {
+      return;
+    }
+
+    // Navigate to Stryv-pass page
+    window.location.href = "/Stryv-pass";
+  };
+
+  // Keyboard navigation handler
+  const handleDialogueKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      // Navigate to Stryv-pass page
+      window.location.href = "/Stryv-pass";
+    }
+  };
+
   // Carousel rotation logic
   const rotateOffer = async () => {
     await animateTextOut();
@@ -221,7 +242,8 @@ export default function Dialogue2({
   }, [open]);
 
   // Handle close with proper animation
-  const handleClose = async () => {
+  const handleClose = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation(); // Prevent dialogue click from firing
     try {
       await animateContainerOut();
       onClose();
@@ -252,9 +274,14 @@ export default function Dialogue2({
   return (
     <div
       ref={containerRef}
-      className="dialogue2-bar w-full fixed top-0 left-0 z-60 flex items-center justify-center"
+      className="dialogue2-bar w-full fixed top-0 left-0 z-60 flex items-center justify-center cursor-pointer"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleDialogueClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={handleDialogueKeyDown}
+      aria-label="Click to visit Stryv Pass page"
     >
       <span ref={textRef} className="dialogue2-text dialogue2-carousel-text">
         {offers[currentOfferIndex]}
