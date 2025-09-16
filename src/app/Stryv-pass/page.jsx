@@ -2,39 +2,44 @@ import React from "react";
 
 const plans = [
   {
-    name: "STRYV Essential",
-    color: "from-gray-300 via-gray-400 to-gray-500", // Silver
-    offerings:
-      "Open Gym or 1 Group Class (MMA, Strength & Conditioning, Yoga, Zumba). Personal Training available as add-on.",
+    name: "STRYV Pro",
+    color: "from-yellow-400 via-yellow-500 to-yellow-600", // Silver
+    offerings: [
+      "Open Gym with 1 PT demo (with Yoga, Zumba)",
+      "NAMMA - 1 free demo session of MMA and S&C",
+    ],
     prices: {
-      "1 Month": "₹3,000",
-      "3 Months": "₹8,000",
-      "6 Months": "₹15,000",
-      "12 Months": "₹28,000",
+      "1 Month": { original: "₹6,600", current: "₹5,100" },
+      "3 Months": { original: "₹13,200", current: "₹10,200" },
+      "6 Months": { original: "₹19,800", current: "₹15,300" },
+      "12 Months": { original: "₹24,200", current: "₹18,700" },
     },
   },
   {
-    name: "STRYV Pro",
-    color: "from-yellow-400 via-yellow-500 to-yellow-600", // Gold
-    offerings:
-      "Open Gym plus 1 Group Class (choose MMA, Strength & Conditioning, Yoga, or Zumba). Personal Training available as add-on.",
+    name: "NAMMA Training",
+    color: "from-teal-400 via-teal-500 to-teal-600", // Gold
+    offerings: [
+      "NAMMA - unlimited classes of MMA and S&C as scheduled",
+      "1 PT session in the Gym free",
+    ],
     prices: {
-      "1 Month": "₹5,500",
-      "3 Months": "₹15,500",
-      "6 Months": "₹29,000",
-      "12 Months": "₹55,000",
+      "1 Month": { original: "₹8,000", current: "₹6,800" },
+      "3 Months": { original: "₹16,500", current: "₹12,800" },
+      "6 Months": { original: "₹26,400", current: "₹20,400" },
+      "12 Months": { original: "₹39,600", current: "₹30,600" },
     },
   },
   {
     name: "STRYV Premium",
     color: "from-red-500 via-red-600 to-red-700", // Red
-    offerings:
-      "Unlimited access to Open Gym and all Group Classes. Personal Training sessions available at discounted rates.",
+    offerings: [
+      "Unlimited access to Open Gym and all Group Classes as scheduled",
+      "Unlimited access to Namma Classes MMA & S&C as scheduled",
+      "1 PT session in the Gym free",
+    ],
     prices: {
-      "1 Month": "₹7,500",
-      "3 Months": "₹21,500",
-      "6 Months": "₹40,000",
-      "12 Months": "₹75,000",
+      "6 Months": { original: "₹39,600", current: "₹30,600" },
+      "12 Months": { original: "₹52,800", current: "₹40,800" },
     },
   },
 ];
@@ -56,54 +61,68 @@ function StryvPass() {
       </p>
 
       {/* Membership Cards */}
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12 w-full justify-center">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-12 w-full justify-center items-stretch">
         {plans.map((plan, index) => (
           <div
             key={index}
-            className={`flex-1 text-white rounded-2xl p-6 md:p-8 shadow-lg transform transition duration-500 hover:scale-105 cursor-pointer bg-gradient-to-br ${plan.color}`}
+            className={`flex-1 flex flex-col justify-between text-white rounded-2xl p-6 md:p-8 shadow-lg transform transition duration-500 hover:scale-105 cursor-pointer bg-gradient-to-br ${plan.color}`}
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center uppercase">
-              {plan.name}
-            </h2>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center uppercase">
+                {plan.name}
+              </h2>
 
-            {/* Justified Offerings Text */}
-            <p className="text-sm md:text-base mb-4 text-justify whitespace-pre-line">
-              {plan.offerings}
-            </p>
+              {/* Bullet Point Offerings */}
+              <ul className="list-disc list-inside mb-4 text-sm md:text-base space-y-2">
+                {plan.offerings.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
 
-            {/* Pricing Table */}
-            <div className="overflow-x-auto">
-              <table className="mx-auto text-white text-sm md:text-base border-collapse text-center">
-                <thead>
-                  <tr>
-                    {Object.keys(plan.prices).map((duration) => (
-                      <th
-                        key={duration}
-                        className="px-2 py-1 border-b border-white font-semibold"
-                      >
-                        {duration}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    {Object.values(plan.prices).map((price, idx) => (
-                      <td
-                        key={idx}
-                        className="px-2 py-1 border-b border-white font-bold"
-                      >
-                        {price}
-                      </td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
+              {/* Pricing Table with slashed prices */}
+              <div className="overflow-x-auto">
+                <table className="mx-auto text-white text-sm md:text-base border-collapse text-center">
+                  <thead>
+                    <tr>
+                      {Object.keys(plan.prices).map((duration) => (
+                        <th
+                          key={duration}
+                          className="px-2 py-1 border-b border-white font-semibold"
+                        >
+                          <span className="text-2xl md:text-3xl bg-gradient-to-r text-white bg-clip-text text-transparent font-extrabold">
+                            {duration.split(" ")[0]}
+                          </span>{" "}
+                          {duration.split(" ")[1]}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      {Object.values(plan.prices).map((price, idx) => (
+                        <td
+                          key={idx}
+                          className="px-2 py-1 border-b border-white font-bold"
+                        >
+                          <span className="line-through text-gray-200 text-xs block">
+                            {price.original}
+                          </span>
+                          <span className="text-lg">{price.current}</span>
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
-            <button className="mt-6 w-full bg-white text-gray-900 font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition">
+            {/* Join Now Button */}
+            <a
+              href="tel:+919900009889"
+              className="mt-6 w-full bg-white text-gray-900 font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition text-center block"
+            >
               Join Now
-            </button>
+            </a>
           </div>
         ))}
       </div>
