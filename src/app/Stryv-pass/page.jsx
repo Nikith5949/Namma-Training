@@ -3,7 +3,7 @@ import React from "react";
 const plans = [
   {
     name: "STRYV Pro",
-    color: "from-yellow-400 via-yellow-500 to-yellow-600", // Silver
+    color: "from-yellow-400 via-yellow-500 to-yellow-600",
     offerings: [
       "Open Gym with 1 PT demo (with Yoga, Zumba)",
       "NAMMA - 1 free demo session of MMA and S&C",
@@ -17,7 +17,7 @@ const plans = [
   },
   {
     name: "NAMMA Training",
-    color: "from-teal-400 via-teal-500 to-teal-600", // Gold
+    color: "from-teal-400 via-teal-500 to-teal-600",
     offerings: [
       "NAMMA - unlimited classes of MMA and S&C as scheduled",
       "1 PT session in the Gym free",
@@ -31,7 +31,7 @@ const plans = [
   },
   {
     name: "STRYV Premium",
-    color: "from-red-500 via-red-600 to-red-700", // Red
+    color: "from-red-500 via-red-600 to-red-700",
     offerings: [
       "Unlimited access to Open Gym and all Group Classes as scheduled",
       "Unlimited access to Namma Classes MMA & S&C as scheduled",
@@ -44,21 +44,26 @@ const plans = [
   },
 ];
 
-const offers = [
-  "Early Bird Special: Kickstart your day with STRYV classes! Use code: NAMMA10",
-  "Independent Workouts: Enjoy early access to Open Gym at STRYV Fit! Use code: STRYV1",
-  "Universal Access: Train across all STRYV facilities! Use code: ALLFIT",
-];
+const specialOffer =
+  "Early Bird Inaugural Offer: Kickstart your fitness journey with STRYV!";
 
 function StryvPass() {
   return (
     <div className="bg-[var(--theme-bgcolor)] text-[var(--theme-color)] pt-30 min-h-screen py-12 px-4 md:px-12 lg:px-24 flex flex-col items-center">
-      <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center text-gray-900">
+      <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center text-[var(--theme-color)]">
         STRYV Pass
       </h1>
-      <p className="text-center text-gray-700 mb-10 max-w-3xl text-lg md:text-xl">
+
+      {/* Special Offer under STRYV Pass */}
+      <div className="mb-10 w-full max-w-2xl">
+        <div className="bg-white p-4 rounded-2xl shadow-md text-center text-gray-900 font-medium hover:scale-105 transform transition duration-300">
+          {specialOffer}
+        </div>
+      </div>
+
+      {/* <p className="text-center text-gray-700 mb-10 max-w-3xl text-lg md:text-xl">
         Choose the membership plan that best fits your goals and duration.
-      </p>
+      </p> */}
 
       {/* Membership Cards */}
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 w-full justify-center items-stretch">
@@ -125,23 +130,6 @@ function StryvPass() {
             </a>
           </div>
         ))}
-      </div>
-
-      {/* Special Offers */}
-      <div className="mt-12 w-full max-w-2xl">
-        <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">
-          Special Offers
-        </h2>
-        <ul className="space-y-4 text-center">
-          {offers.map((offer, index) => (
-            <li
-              key={index}
-              className="bg-white p-4 rounded-2xl shadow-md text-gray-900 hover:scale-105 transform transition duration-300 font-medium"
-            >
-              {offer}
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );
