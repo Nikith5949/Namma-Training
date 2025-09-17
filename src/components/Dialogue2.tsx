@@ -177,7 +177,7 @@ export default function Dialogue2({
       window.location.href = "/Stryv-pass";
     }
   };
-  //
+
   // Carousel rotation logic
   const rotateOffer = async () => {
     await animateTextOut();
