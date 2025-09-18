@@ -34,7 +34,7 @@ function About() {
             />
           </filter>
 
-          {/* Mask definition */}
+          {/* Mask definition 1*/}
           <mask id="stryv-mask">
             <rect width="100%" height="100%" fill="black" />
             <path
