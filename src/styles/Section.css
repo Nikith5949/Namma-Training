@@ -98,6 +98,27 @@
   .mob {
     overflow: hidden;
   }
+  .section-content {
+    max-width: 800px;
+    text-align: left;
+    color: white;
+    padding: 1rem 0;
+    margin: 0;
+    line-height: 1.7;
+    font-size: 1.125rem;
+    z-index: 10; /* FIXED: was -10 */
+  }
+
+  .section-athlete {
+    font-size: 100px;
+    line-height: 0.8;
+    opacity: 1;
+    width: 100%;
+    transform: rotate(-3deg);
+    text-align: center;
+    font-weight: bold; /* FIXED: was font-style: bold */
+    z-index: 10; /* FIXED: was -10 */
+  }
   .section-containerbg {
     background-image: linear-gradient(
         to bottom,

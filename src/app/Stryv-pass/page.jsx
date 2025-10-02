@@ -54,23 +54,19 @@ function StryvPass() {
         STRYV Pass
       </h1>
 
-      {/* Special Offer under STRYV Pass */}
+      {/* Special Offer */}
       <div className="mb-10 w-full max-w-2xl">
         <div className="bg-white p-4 rounded-2xl shadow-md text-center text-gray-900 font-medium hover:scale-105 transform transition duration-300">
           {specialOffer}
         </div>
       </div>
 
-      {/* <p className="text-center text-gray-700 mb-10 max-w-3xl text-lg md:text-xl">
-        Choose the membership plan that best fits your goals and duration.
-      </p> */}
-
       {/* Membership Cards */}
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12 w-full justify-center items-stretch">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-8 w-full justify-center items-stretch">
         {plans.map((plan, index) => (
           <div
             key={index}
-            className={`flex-1 flex flex-col justify-between text-white rounded-2xl p-6 md:p-8 shadow-lg transform transition duration-500 hover:scale-105 cursor-pointer bg-gradient-to-br ${plan.color}`}
+            className={`w-full md:w-80 flex flex-col justify-between text-white rounded-2xl p-6 md:p-8 shadow-lg transform transition duration-500 hover:scale-105 cursor-pointer bg-gradient-to-br ${plan.color}`}
           >
             <div>
               <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center uppercase">
@@ -84,20 +80,23 @@ function StryvPass() {
                 ))}
               </ul>
 
-              {/* Pricing Table with slashed prices */}
-              <div className="overflow-x-auto">
-                <table className="mx-auto text-white text-sm md:text-base border-collapse text-center">
+              {/* Pricing Table with thicker white borders */}
+              <div>
+                <table className="mx-auto text-white text-xs border-collapse text-center w-full">
                   <thead>
                     <tr>
                       {Object.keys(plan.prices).map((duration) => (
                         <th
                           key={duration}
-                          className="px-2 py-1 border-b border-white font-semibold"
+                          className="px-1 py-2 border-b-2 border-white font-semibold"
                         >
-                          <span className="text-2xl md:text-3xl bg-gradient-to-r text-white bg-clip-text text-transparent font-extrabold">
+                          <span className="text-lg md:text-xl bg-gradient-to-r text-white bg-clip-text text-transparent font-extrabold">
                             {duration.split(" ")[0]}
-                          </span>{" "}
-                          {duration.split(" ")[1]}
+                          </span>
+                          <br />
+                          <span className="text-xs">
+                            {duration.split(" ")[1]}
+                          </span>
                         </th>
                       ))}
                     </tr>
@@ -107,12 +106,14 @@ function StryvPass() {
                       {Object.values(plan.prices).map((price, idx) => (
                         <td
                           key={idx}
-                          className="px-2 py-1 border-b border-white font-bold"
+                          className="px-1 py-2 border-b-2 border-white font-bold"
                         >
                           <span className="line-through text-gray-200 text-xs block">
                             {price.original}
                           </span>
-                          <span className="text-lg">{price.current}</span>
+                          <span className="text-sm md:text-base">
+                            {price.current}
+                          </span>
                         </td>
                       ))}
                     </tr>
@@ -124,7 +125,7 @@ function StryvPass() {
             {/* Join Now Button */}
             <a
               href="tel:+919900009889"
-              className="mt-6 w-full bg-white text-gray-900 font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition text-center block"
+              className="mt-6 w-full bg-white text-gray-900 font-bold py-2 px-4 rounded-full hover:bg-gray-200 transition text-center block no-underline"
             >
               Join Now
             </a>
