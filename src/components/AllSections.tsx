@@ -29,7 +29,7 @@ export default function AllSections() {
           <MobileSection1 />
           <div className="h-[20vh] sm:h-[20vh]" />
         </div>
-        <Section2 />
+        {/* <Section2 /> */}
         <SectionMobile />
         <Section4 />
         <Section5 />
@@ -39,7 +39,7 @@ export default function AllSections() {
       <div className="hidden md:block">
         <Section />
         <div className="h-[10vh] sm:h-[20vh] md:h-[40vh] lg:h-[40vh]" />
-        <Section2 />
+        {/* <Section2 /> */}
         <Section3 />
         {/* <NammaSection /> */}
         <Section4 />
