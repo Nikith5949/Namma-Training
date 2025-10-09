@@ -7,7 +7,7 @@ import { FaWhatsapp } from "react-icons/fa"; // FontAwesome WhatsApp icon
 export default function Section5() {
   const scrollRef = useRef(null);
 
-  const phoneNumber = "+919480009889";
+  const phoneNumber = "+916364501155";
   const whatsappLink = `https://wa.me/${phoneNumber.replace("+", "")}`;
 
   const welcomeLanguages = [
@@ -58,7 +58,7 @@ export default function Section5() {
       <div className="flex flex-col items-center">
         <div className="text-center mb-4">
           <p className="text-lg">WWW.STRYV.CO.IN</p>
-          <p className="text-lg">(+91) 94800 09889</p>
+          <p className="text-lg">(+91)6364501155</p>
         </div>
 
         <div className="text-center mb-6">

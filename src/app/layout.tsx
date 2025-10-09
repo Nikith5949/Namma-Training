@@ -43,7 +43,7 @@ export default function RootLayout({
     }
   }, [pathname]);
 
-  const phoneNumber = "+919480009889";
+  const phoneNumber = "+916364501155";
   const whatsappLink = `https://wa.me/${phoneNumber.replace("+", "")}`;
 
   return (

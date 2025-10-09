@@ -13,7 +13,7 @@ import { StryvLogoMask } from "@/components/SrtyvLogoMask";
 import StryvLogoWithText from "@/components/SrtyvLogoWithText";
 
 function About() {
-  const phoneNumber = "+919480009889";
+  const phoneNumber = "+916364501155";
   const whatsappLink = `https://wa.me/${phoneNumber.replace("+", "")}`;
   return (
     <div className="mob bg-[var(--theme-bgcolor)] w-full flex-col  min-h-screen   pt-50 ">
