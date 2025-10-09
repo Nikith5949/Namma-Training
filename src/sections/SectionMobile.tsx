@@ -91,6 +91,7 @@ export default function SectionMobile() {
             <br />
             LIFE
           </h2>
+
           <div className="space-y-5">
             {cards1.map((card) => (
               <div
