@@ -5,7 +5,7 @@ export const cards1 = [
     height: "h-120",
     width: "w-190",
     imageHeight: "h-150",
-    title: "Premium Gym Equipment",
+    title: "Premium Gym",
     description:
       "Our gym features premium, state-of-the-art equipment designed to cater to every fitness enthusiast's needs. From advanced cardio machines to strength training apparatus, each piece of equipment is crafted to provide optimal performance, safety, and comfort. Whether you are a beginner or an experienced athlete, our high-quality machines ensure an effective and enjoyable workout experience.",
     parallaxSpeed: 3,
