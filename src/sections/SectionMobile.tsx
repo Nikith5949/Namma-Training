@@ -123,19 +123,21 @@ export default function SectionMobile() {
             <br />
             LIFE
           </h2>
-          {cards1.map((card, index) => (
-            <div
-              key={card.somekey}
-              className="mobile-card"
-              onMouseDown={(e) => handleHold(e, true, index)}
-              onMouseUp={(e) => handleHold(e, false, index)}
-              onMouseLeave={(e) => handleHold(e, false, index)}
-              onTouchStart={(e) => handleHold(e, true, index)}
-              onTouchEnd={(e) => handleHold(e, false, index)}
-            >
-              <MobileSeparatorCard {...card} />
-            </div>
-          ))}
+          <div className="space-y-5">
+            {cards1.map((card, index) => (
+              <div
+                key={card.somekey}
+                className="mobile-card"
+                onMouseDown={(e) => handleHold(e, true, index)}
+                onMouseUp={(e) => handleHold(e, false, index)}
+                onMouseLeave={(e) => handleHold(e, false, index)}
+                onTouchStart={(e) => handleHold(e, true, index)}
+                onTouchEnd={(e) => handleHold(e, false, index)}
+              >
+                <MobileSeparatorCard {...card} />
+              </div>
+            ))}
+          </div>
         </div>
         <div className="h-[8svh]" />
         <div className="h-0.5 w-[90svw] max-w-6xl mx-auto bg-[var(--theme-color)]" />

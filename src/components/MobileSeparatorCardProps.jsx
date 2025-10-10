@@ -13,10 +13,10 @@ function MobileSeparatorCard({ imageUrl, title, description }) {
         />
         {/* Overlay text (only appears on hold) */}
         <div className="card-overlay absolute inset-0 flex flex-col justify-center items-center text-center bg-black/60 text-white opacity-0 p-4">
-          <h2 className="text-xl text-red-600 font-semibold mb-2 leading-tight">
+          <h2 className="text-xl text-red-400 font-semibold mb-2 leading-tight">
             {title}
           </h2>
-          <p className="text-sm text-red-600 opacity-90 leading-snug">
+          <p className="text-sm text-red-400 opacity-90 leading-snug">
             {description}
           </p>
         </div>
