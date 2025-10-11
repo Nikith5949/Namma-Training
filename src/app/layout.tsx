@@ -49,6 +49,19 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" className={`${SuissenIntl.variable}`}>
+        <head>
+          <title>Best Gym in Whitefield, Bengaluru | STRYV FIT</title>
+          <meta
+            name="description"
+            content="Join STRYV – the best gym in Whitefield, Bengaluru offering strength training, CrossFit, and personal training to help you achieve your fitness goals."
+          ></meta>
+          <meta
+            name="keywords"
+            content="Best gym in Whitefield, Bengaluru, Fitness center in Whitefield, CrossFit gym in Whitefield"
+          ></meta>
+          <link rel="canonical" href="https://www.stryv.co.in/" />
+        </head>
+
         <body>
           <NavWithDialogue />
 
