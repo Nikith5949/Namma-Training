@@ -59,6 +59,10 @@ export default function RootLayout({
             name="keywords"
             content="Best gym in Whitefield, Bengaluru, Fitness center in Whitefield, CrossFit gym in Whitefield"
           ></meta>
+          <meta
+            name="google-site-verification"
+            content="GnrNgS9_eOWrBXTMMdQ1BA7GZt8wwS1MKddowTSJRfg"
+          />
           <link rel="canonical" href="https://www.stryv.co.in/" />
         </head>
 
