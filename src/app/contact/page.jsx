@@ -86,7 +86,7 @@ export default function Contact() {
     const form = e.target;
     const submitData = new FormData(form);
 
-    fetch("https://formsubmit.co/stryvfitness@gmail.com", {
+    fetch("https://formsubmit.co/strvyfitness@gmail.com", {
       method: "POST",
       body: submitData,
       headers: { Accept: "application/json" },
