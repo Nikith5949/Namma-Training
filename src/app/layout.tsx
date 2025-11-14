@@ -1,6 +1,8 @@
 "use client";
 
 import localFont from "next/font/local";
+import Script from "next/script";
+
 import "./globals.css";
 import { usePathname } from "next/navigation";
 import NavWithDialogue from "../components/NavWithDialogue";
@@ -64,9 +66,42 @@ export default function RootLayout({
             content="GnrNgS9_eOWrBXTMMdQ1BA7GZt8wwS1MKddowTSJRfg"
           />
           <link rel="canonical" href="https://www.stryv.co.in/" />
+
+          {/* ✅ Load GA script */}
+          <Script id="gtm-header" strategy="afterInteractive">
+            {`
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NGPFMZSW');
+  `}
+          </Script>
+
+          {/* ✅ GA config */}
+          {/* <Script id="ga-init" strategy="afterInteractive">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXX', {
+        page_path: window.location.pathname,
+      });
+    `}
+  </Script> */}
         </head>
 
         <body>
+          {/* ⭐ Google Tag Manager NoScript (must be first inside body) */}
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-NGPFMZSW"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            ></iframe>
+          </noscript>
+
           <NavWithDialogue />
 
           {/* Background */}
